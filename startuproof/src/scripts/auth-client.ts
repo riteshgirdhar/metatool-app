@@ -15,8 +15,12 @@ export function getClient(): Promise<SupabaseClient> {
     createClient(url!, key!, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' } }));
   return client;
 }
+/** True when supabase-js has persisted a session in this browser. Lets anonymous visitors skip loading the SDK. */
+function hasStoredSession() {
+  try { return Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k)); } catch { return true; }
+}
 export async function getSession(): Promise<Session | null> {
-  if (!authConfigured) return null;
+  if (!authConfigured || !hasStoredSession()) return null;
   const sb = await getClient();
   const { data } = await sb.auth.getSession();
   return data.session;

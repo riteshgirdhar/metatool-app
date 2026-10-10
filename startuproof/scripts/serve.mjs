@@ -20,7 +20,7 @@ const deps = {
 };
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.woff2': 'font/woff2', '.csv': 'text/csv; charset=utf-8', '.md': 'text/markdown; charset=utf-8', '.ics': 'text/calendar; charset=utf-8' };
 const REDIRECTS = { '/forgot-password': '/forgot/', '/register': '/signup/', '/help': '/support/', '/cookies': '/cookie/', '/news': '/radar/', '/dashboard': '/app/' };
-const BASE_HEADERS = { 'x-robots-tag': 'noindex, nofollow', 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'DENY' };
+const BASE_HEADERS = { ...(process.env.SR_INDEXABLE === '1' ? {} : { 'x-robots-tag': 'noindex, nofollow' }), 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'DENY' };
 
 async function tryFile(p) { try { const s = await stat(p); return s.isFile() ? p : null; } catch { return null; } }
 
