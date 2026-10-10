@@ -1,0 +1,82 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { NAV, NAV_DIRECT } from '../config/site';
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href;
+const inSection = (href: string) => href !== '/' && path.startsWith(href);
+const groupActive = (links: { href: string }[]) => links.some((l) => inSection(l.href));
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/"><Logo /><span>Startup Roof</span></a>
+    <nav class="primary-nav" aria-label="Main">
+      <ul>
+        {NAV.slice(0, 2).map((g) => (
+          <li data-menu>
+            <button type="button" class:list={['nav-trigger', { 'is-active': groupActive(g.links) }]} aria-expanded="false" aria-controls={`menu-${g.id}`}>
+              {g.label}<Icon name="chevron-down" />
+            </button>
+            <div class="nav-panel" id={`menu-${g.id}`} hidden>
+              <ul>
+                {g.links.map((l) => (
+                  <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}><span class="nl-label">{l.label}</span>{l.description && <span class="nl-desc">{l.description}</span>}</a></li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+        {NAV_DIRECT.map((l) => (
+          <li><a class="nav-direct" href={l.href} aria-current={inSection(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+        {NAV.slice(2).map((g) => (
+          <li data-menu>
+            <button type="button" class:list={['nav-trigger', { 'is-active': groupActive(g.links) }]} aria-expanded="false" aria-controls={`menu-${g.id}`}>
+              {g.label}<Icon name="chevron-down" />
+            </button>
+            <div class="nav-panel" id={`menu-${g.id}`} hidden>
+              <ul>
+                {g.links.map((l) => (
+                  <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}><span class="nl-label">{l.label}</span>{l.description && <span class="nl-desc">{l.description}</span>}</a></li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost header-search" href="/search/" aria-label="Search"><Icon name="search" /></a>
+      <a class="btn btn-ghost hide-sm" href="/login/" data-auth-link>Log in</a>
+      <a class="btn btn-primary" href="/signup/">Join free</a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-drawer" data-drawer-open>
+        <Icon name="menu" /><span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="site-drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="drawer-backdrop" data-drawer-close></div>
+  <div class="drawer-panel">
+    <div class="drawer-top">
+      <span id="drawer-title" class="brand"><Logo /><span>Menu</span></span>
+      <button type="button" class="menu-toggle" data-drawer-close><Icon name="x" /><span class="visually-hidden">Close menu</span></button>
+    </div>
+    <nav aria-label="Main (mobile)">
+      <ul>
+        <li><a href="/search/"><Icon name="search" class="visually-hidden" />Search the site</a></li>
+        {NAV_DIRECT.map((l) => <li><a href={l.href} aria-current={inSection(l.href) ? 'page' : undefined}>{l.label}</a></li>)}
+      </ul>
+      {NAV.map((g) => (
+        <>
+          <h2>{g.label}</h2>
+          <ul>{g.links.map((l) => <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>)}</ul>
+        </>
+      ))}
+    </nav>
+    <div class="drawer-actions">
+      <a class="btn btn-primary btn-lg" href="/signup/">Join free</a>
+      <a class="btn btn-secondary btn-lg" href="/login/">Log in</a>
+    </div>
+  </div>
+</div>

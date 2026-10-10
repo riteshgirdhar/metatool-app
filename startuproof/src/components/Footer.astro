@@ -1,0 +1,25 @@
+---
+import Logo from './Logo.astro';
+import { FOOTER, SITE } from '../config/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/"><Logo /><span>Startup Roof</span></a>
+        <p class="muted small" style="margin-top: var(--s3); max-width: 18rem">{SITE.tagline}</p>
+      </div>
+      {FOOTER.map((col) => (
+        <nav aria-label={col.heading}>
+          <h2>{col.heading}</h2>
+          <ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+        </nav>
+      ))}
+    </div>
+    <div class="footer-base">
+      <span>© {year} Startup Roof. Information on this site is not investment advice.</span>
+      <span>Preview build — not yet the live startuproof.com site.</span>
+    </div>
+  </div>
+</footer>

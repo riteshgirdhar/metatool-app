@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Force noindex for private, draft or demo pages even after migration. */
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  breadcrumbs?: Crumb[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Load a page-specific client script bundle (kept off other pages). */
+  bare?: boolean;
+}
+
+const { title, description, noindex = false, ogImage = '/og/default.png', ogType = 'website', breadcrumbs, jsonLd, bare = false } = Astro.props;
+const path = Astro.url.pathname.endsWith('/') || Astro.url.pathname.includes('.') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(path, SITE.canonicalOrigin).href;
+const fullTitle = title === SITE.name ? `${SITE.name} — Build, connect, raise and scale` : `${title} — ${SITE.name}`;
+const robots = !SITE.indexable || noindex ? 'noindex, nofollow' : 'index, follow';
+const ogUrl = new URL(ogImage, SITE.canonicalOrigin).href;
+
+const ld: Record<string, unknown>[] = [];
+if (jsonLd) ld.push(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]));
+if (breadcrumbs?.length) {
+  ld.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [{ name: 'Home', href: '/' }, ...breadcrumbs].map((c, i) => ({
+      '@type': 'ListItem', position: i + 1, name: c.name,
+      ...(c.href ? { item: new URL(c.href, SITE.canonicalOrigin).href } : {}),
+    })),
+  });
+}
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content={robots} />
+  <link rel="canonical" href={canonical} />
+  <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#fafaf7" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={SITE.locale} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogUrl} />
+  {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj).replace(/</g, '\\u003c')} />)}
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {!bare && <Header />}
+  <main id="main" tabindex="-1">
+    {breadcrumbs?.length ? <div class="container" style="padding-top: var(--s5)"><Breadcrumbs items={breadcrumbs} /></div> : null}
+    <slot />
+  </main>
+  {!bare && <Footer />}
+  <script>import '../scripts/nav';</script>
+</body>
+</html>

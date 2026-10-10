@@ -1,0 +1,12 @@
+Line,Input or formula,Value,Notes
+A,Sales & marketing spend this period (all-in: salaries + tools + ads + events),,Enter total for the period
+B,New customers won this period,,Count customers whose first paid period started in this window
+C,CAC = A / B,=C2/C3,Per-channel CAC is more useful than blended
+D,Average monthly revenue per customer,,
+E,Variable cost per customer per month (payment fees + hosting + support + delivery),,Costs that grow with each customer
+F,Monthly contribution margin per customer = D - E,=C5-C6,
+G,Contribution margin % = F / D,=C7/C5,
+H,Payback period in months = C / F,=C4/C7,Compare with your retention curve
+I,Observed average customer lifetime in months (from cohorts),,Use observed data; state assumptions
+J,Indicative LTV = F x I,=C7*C10,Treat as an estimate early on
+K,LTV : CAC = J / C,=C11/C4,
