@@ -1,0 +1,26 @@
+---
+import AuthShell from '../components/AuthShell.astro';
+import Field from '../components/forms/Field.astro';
+const roles = [
+  { v: 'founder', l: 'Founder or aspiring founder' }, { v: 'investor', l: 'Investor' }, { v: 'mentor', l: 'Mentor or operator' },
+  { v: 'partner', l: 'Partner or service provider' }, { v: 'other', l: 'Something else' },
+];
+---
+<AuthShell page="signup" title="Join Startup Roof" heading="Create your free account" lede="Just the basics now — you can add role details after you verify your email." description="Create a free Startup Roof account.">
+  <form class="form" data-auth-form novalidate>
+    <Field form="su" name="full_name" label="Full name" required autocomplete="name" />
+    <Field form="su" name="email" label="Email" type="email" required autocomplete="email" />
+    <Field form="su" name="password" label="Password" type="password" required autocomplete="new-password" minlength={10} hint="At least 10 characters." />
+    <fieldset class="field">
+      <legend>I'm joining as</legend>
+      <div class="choice-grid">{roles.map((r, i) => <label class="choice choice-card"><input type="radio" name="role" value={r.v} checked={i === 0} />{r.l}</label>)}</div>
+      <span class="hint">Choosing “Investor” records your interest. Investor access needs a separate verification.</span>
+    </fieldset>
+    <div class="field">
+      <label class="choice" for="su-agree"><input id="su-agree" type="checkbox" name="agree" value="yes" aria-describedby="su-agree-error" />I've read the <a href="/terms/">terms</a> and <a href="/privacy/">privacy notice</a>.</label>
+      <span class="field-error" id="su-agree-error" data-error-for="agree" hidden></span>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Create account</button>
+  </form>
+  <p slot="after" class="small" style="margin-top: var(--s4)">Already have an account? <a href="/login/" data-keep-next>Log in</a>. Didn't get the verification email? <button type="button" class="btn btn-ghost" data-resend>Resend it</button></p>
+</AuthShell>

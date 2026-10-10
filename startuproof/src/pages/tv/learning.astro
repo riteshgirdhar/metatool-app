@@ -1,0 +1,10 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+<Base title="My learning — Startup Roof TV" description="Your TV watchlist and progress, linked to Academy tracks." noindex breadcrumbs={[{ name: 'TV', href: '/tv/' }, { name: 'My learning' }]}>
+  <PageHero eyebrow="Startup Roof TV" title="My learning" lede="When episodes are published, your watchlist and resume points will appear here and in Founder OS." />
+  <section class="section tight"><div class="container narrow">
+    <div class="state"><h3>Nothing to resume yet</h3><p>No episodes are available, so there is no progress to show. Meanwhile, the Academy guides are ready to read.</p><a class="btn btn-primary" href="/academy/">Go to the Academy</a></div>
+  </div></section>
+</Base>

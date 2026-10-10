@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<Base title="Search" description="Search Startup Roof pages, Radar items, Academy guides, Toolkit templates and opportunities." breadcrumbs={[{ name: 'Search' }]}>
+  <PageHero eyebrow="Search" title="Search Startup Roof">
+    <form role="search" action="/search/" method="get" class="cluster" style="margin-top: var(--s5); max-width: 40rem" data-search-form>
+      <label for="q" class="visually-hidden">Search terms</label>
+      <input id="q" name="q" type="search" class="input" style="flex:1; min-width: 12rem" placeholder="e.g. Series A, unit economics, Festival" autocomplete="off" />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </PageHero>
+  <section class="section tight"><div class="container narrow">
+    <p class="small muted" aria-live="polite" data-search-status>Search covers public pages, Radar, Academy, Toolkit, Stories and opportunities. Member-only information is not included.</p>
+    <ul class="item-list" data-search-results></ul>
+  </div></section>
+  <script>
+    type Doc = { t: string; u: string; s: string; k: string };
+    const form = document.querySelector<HTMLFormElement>('[data-search-form]')!;
+    const input = form.querySelector<HTMLInputElement>('input')!;
+    const out = document.querySelector<HTMLUListElement>('[data-search-results]')!;
+    const status = document.querySelector<HTMLElement>('[data-search-status]')!;
+    let docs: Doc[] | null = null;
+    async function load() { if (!docs) { const r = await fetch('/search-index.json'); if (!r.ok) throw new Error('index'); docs = await r.json(); } return docs!; }
+    function score(d: Doc, terms: string[]) {
+      let s = 0; const t = d.t.toLowerCase(), b = d.s.toLowerCase();
+      for (const w of terms) { if (t.includes(w)) s += 5; if (b.includes(w)) s += 1; if (!t.includes(w) && !b.includes(w)) return 0; }
+      return s;
+    }
+    async function run(q: string) {
+      const terms = q.toLowerCase().split(/\s+/).filter((w) => w.length > 1);
+      out.replaceChildren();
+      if (!terms.length) return;
+      status.textContent = 'Searching…';
+      try {
+        const list = (await load()).map((d) => [d, score(d, terms)] as const).filter(([, s]) => s > 0).sort((a, b) => b[1] - a[1]).slice(0, 30);
+        status.textContent = list.length ? `${list.length} result${list.length > 1 ? 's' : ''} for “${q}”` : `No results for “${q}”. Try a different word.`;
+        for (const [d] of list) {
+          const li = document.createElement('li'); const h = document.createElement('h2'); h.style.fontSize = '1.125rem'; h.style.margin = '0';
+          const a = document.createElement('a'); a.href = d.u; a.textContent = d.t; h.append(a);
+          const k = document.createElement('span'); k.className = 'xsmall muted'; k.textContent = d.k;
+          const p = document.createElement('p'); p.textContent = d.s; li.append(k, h, p); out.append(li);
+        }
+      } catch { status.textContent = 'Search is unavailable right now. Please try again.'; }
+    }
+    const q0 = new URLSearchParams(location.search).get('q') ?? '';
+    input.value = q0; if (q0) void run(q0);
+    form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); history.replaceState(null, '', q ? `?q=${encodeURIComponent(q)}` : location.pathname); void run(q); });
+  </script>
+</Base>

@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+const types = [
+  ['Universities', 'Student and faculty founders, research spin-outs and incubation.'],
+  ['Corporates', 'Pilots, open innovation challenges and procurement-ready startups.'],
+  ['Government & free zones', 'Programmes, licensing pathways and ecosystem data.'],
+  ['Accelerators & incubators', 'Cohort sourcing, shared mentors and demo days.'],
+  ['Investor networks', 'Deal flow and co-investment visibility for verified members.'],
+  ['Communities', 'Meetups and founder groups that want a shared home.'],
+];
+---
+<Base title="Partner with Startup Roof" description="Partnerships for universities, corporates, government, accelerators, investor networks and communities. Tell us how you'd like to work together." breadcrumbs={[{ name: 'Partners' }]}>
+  <PageHero eyebrow="Partnerships" title="Build the ecosystem with us" lede="We work with organisations that help founders. No partners are announced yet — we will list them once agreements are in place." />
+  <section class="section tight"><div class="container">
+    <ul class="grid cols-3" style="list-style:none;padding:0">{types.map(([t, d]) => <li class="card"><h2 style="font-size:1.125rem;margin:0">{t}</h2><p>{d}</p></li>)}</ul>
+  </div></section>
+  <section class="section alt"><div class="container split">
+    <div><h2>Propose a partnership</h2><p class="lede">Tell us who you are and what you'd like to achieve. We reply to every relevant enquiry.</p><p class="small muted">Service providers who want to reach members should apply to the <a href="/marketplace/">Marketplace</a> instead.</p></div>
+    <div class="form-panel">
+      <Form type="partnership" id="partner" submitLabel="Send enquiry" success="Thanks — your partnership enquiry is with our team.">
+        <div class="form-row two"><Field form="partner" name="name" label="Name" required autocomplete="name" /><Field form="partner" name="email" label="Work email" type="email" required autocomplete="email" /></div>
+        <Field form="partner" name="organisation" label="Organisation" required autocomplete="organization" />
+        <Field form="partner" name="partnerType" label="Type of organisation" type="select" required options={[{ value: 'university', label: 'University' }, { value: 'corporate', label: 'Corporate' }, { value: 'government', label: 'Government or free zone' }, { value: 'accelerator', label: 'Accelerator or incubator' }, { value: 'investor-network', label: 'Investor network' }, { value: 'community', label: 'Community' }, { value: 'service-provider', label: 'Service provider' }, { value: 'other', label: 'Other' }]} />
+        <Field form="partner" name="message" label="What would you like to do together?" type="textarea" required minlength={10} />
+      </Form>
+    </div>
+  </div></section>
+</Base>

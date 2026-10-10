@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Your account" description="Your Startup Roof member area." noindex>
+  <section class="section tight" data-app="home"><div class="container">
+    <div data-app-loading class="stack" aria-busy="true"><span class="visually-hidden">Loading your account…</span><div class="skeleton" style="height:2.5rem;max-width:20rem"></div><div class="skeleton" style="height:8rem"></div></div>
+    <div data-app-unavailable hidden class="notice warn"><strong>Your account is temporarily unavailable.</strong> Sign-in is not available on this preview right now. <a href="/contact/">Contact us</a> if you need help.</div>
+    <div data-app-error hidden class="notice danger"><strong>Something went wrong loading your account.</strong> Refresh the page or <a href="/login/">log in again</a>.</div>
+    <div data-app-ready hidden class="stack">
+      <div class="cluster" style="justify-content:space-between"><h1 style="font-size: var(--fs-2xl); margin:0">Welcome, <span data-name></span></h1><button type="button" class="btn btn-secondary" data-logout>Log out</button></div>
+      <div class="notice" data-onboarding-todo hidden><strong>Finish setting up</strong> Two minutes of questions unlock your readiness view. <a href="/app/onboarding/">Complete your profile</a>.</div>
+      <div class="grid cols-3">
+        <section class="card" aria-labelledby="acc-h"><h2 id="acc-h" style="font-size: var(--fs-lg); margin:0">Account</h2>
+          <dl class="facts" style="grid-template-columns:1fr"><div><dt>Email</dt><dd data-email></dd></div><div><dt>Joined as</dt><dd data-requested-role></dd></div><div><dt>Investor access</dt><dd data-investor-status>Checking…</dd></div></dl>
+          <a class="small" href="/app/onboarding/">Edit profile</a>
+        </section>
+        <section class="card" id="referrals" aria-labelledby="ref-h"><h2 id="ref-h" style="font-size: var(--fs-lg); margin:0">Your referral link</h2>
+          <label for="ref-link" class="visually-hidden">Referral link</label><input id="ref-link" class="input" data-ref-link readonly value="Loading…" />
+          <div class="cluster"><button type="button" class="btn btn-secondary" data-copy-ref>Copy link</button><span class="small muted" role="status" data-copy-status></span></div>
+          <p class="small" data-ref-counts>Loading…</p>
+        </section>
+        <section class="card" aria-labelledby="saved-h"><h2 id="saved-h" style="font-size: var(--fs-lg); margin:0">Saved Radar items</h2>
+          <ul class="small" data-saved style="margin:0"></ul><p class="small muted" data-saved-empty>Nothing saved on this device yet. <a href="/radar/">Browse Radar</a>.</p>
+        </section>
+      </div>
+      <section aria-labelledby="next-h"><h2 id="next-h" style="font-size: var(--fs-xl)">Next steps</h2>
+        <div class="grid cols-3">
+          <a class="card link-card" href="/academy/" style="text-decoration:none;color:inherit"><h3>Continue learning</h3><p>Pick up an Academy track.</p></a>
+          <a class="card link-card" href="/opportunities/" style="text-decoration:none;color:inherit"><h3>Apply to an open call</h3><p>See current opportunities.</p></a>
+          <a class="card link-card" href="/investors/#for-investors" style="text-decoration:none;color:inherit"><h3>Investor verification</h3><p>For investors who want restricted access.</p></a>
+        </div>
+      </section>
+    </div>
+  </div></section>
+  <script>import '../../scripts/app';</script>
+</Base>

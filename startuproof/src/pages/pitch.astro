@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+import { STAGE_OPTIONS } from '../components/forms/StageOptions';
+---
+<Base title="Apply to pitch at Founder Festival" description="Apply to the Founder Festival Pitch Studio 2027. Shortlisted startups pitch live to investors and are offered investor meetings." breadcrumbs={[{ name: 'Founder Festival', href: '/festival/' }, { name: 'Pitch' }]} ogImage="/og/festival.png">
+  <PageHero eyebrow="Pitch Studio 2027" title="Apply to pitch" lede="For startups planning to raise in the next 12 months. Applications are reviewed by the Startup Roof team; the provisional deadline is 15 February 2027." />
+  <section class="section tight"><div class="container split">
+    <div>
+      <h2 style="font-size: var(--fs-xl)">How selection works</h2>
+      <ol class="steps">
+        <li><div><h3>Apply</h3><p>Tell us about the company and the round. A deck link is optional at this stage.</p></div></li>
+        <li><div><h3>Review</h3><p>We look at problem, traction, team and fit for the investor audience.</p></div></li>
+        <li><div><h3>Shortlist</h3><p>Shortlisted founders get pitch coaching and investor meetings at the Festival.</p></div></li>
+      </ol>
+      <p class="small muted">There is no application fee. Festival dates are provisional; we will confirm them to applicants.</p>
+    </div>
+    <div class="form-panel">
+      <Form type="pitch" id="pitch-apply" submitLabel="Submit application" success="Your pitch application has been received.">
+        <div class="form-row two"><Field form="pitch-apply" name="name" label="Your name" required autocomplete="name" /><Field form="pitch-apply" name="email" label="Email" type="email" required autocomplete="email" /></div>
+        <div class="form-row two"><Field form="pitch-apply" name="company" label="Company" required autocomplete="organization" /><Field form="pitch-apply" name="website" label="Website" type="url" /></div>
+        <div class="form-row two"><Field form="pitch-apply" name="stage" label="Stage" type="select" required options={STAGE_OPTIONS} /><Field form="pitch-apply" name="sector" label="Sector" required /></div>
+        <Field form="pitch-apply" name="raising" label="Raising in the next 12 months?" type="select" required options={[{ value: 'yes', label: 'Yes' }, { value: 'unsure', label: 'Not sure yet' }, { value: 'no', label: 'No' }]} />
+        <Field form="pitch-apply" name="oneLiner" label="What does the company do?" type="textarea" required minlength={10} maxlength={280} hint="One or two sentences, up to 280 characters." />
+        <Field form="pitch-apply" name="deckUrl" label="Deck link (optional)" type="url" hint="A view-only link. Do not upload confidential documents you have not chosen to share." />
+      </Form>
+    </div>
+  </div></section>
+</Base>

@@ -1,0 +1,16 @@
+---
+import AuthShell from '../components/AuthShell.astro';
+import Field from '../components/forms/Field.astro';
+---
+<AuthShell page="login" title="Log in" heading="Log in" description="Log in to your Startup Roof account.">
+  <form class="form" data-auth-form novalidate>
+    <Field form="li" name="email" label="Email" type="email" required autocomplete="email" />
+    <Field form="li" name="password" label="Password" type="password" required autocomplete="current-password" />
+    <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+  </form>
+  <div slot="after" class="small stack" style="margin-top: var(--s4)">
+    <p style="margin:0"><a href="/forgot/">Forgot your password?</a></p>
+    <p style="margin:0">New to Startup Roof? <a href="/signup/" data-keep-next>Create a free account</a>.</p>
+    <p style="margin:0">Need a new verification email? Enter your email above, then <button type="button" class="btn btn-ghost" data-resend>resend it</button>.</p>
+  </div>
+</AuthShell>

@@ -1,0 +1,26 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ShowArt from '../../../components/ShowArt.astro';
+import StatusBadge from '../../../components/StatusBadge.astro';
+import { SHOWS, TV_CATEGORIES, TRACKS, type Show } from '../../../data/content';
+export function getStaticPaths() { return SHOWS.map((s) => ({ params: { show: s.slug }, props: { s } })); }
+const { s } = Astro.props as { s: Show };
+const cat = TV_CATEGORIES.find((c) => c.slug === s.category)!;
+const track = s.track ? TRACKS.find((t) => t.slug === s.track) : undefined;
+---
+<Base title={`${s.title} — Startup Roof TV`} description={`${s.summary} Planned show; no episodes published yet.`} breadcrumbs={[{ name: 'TV', href: '/tv/' }, { name: cat.title, href: `/tv/category/${cat.slug}/` }, { name: s.title }]} ogImage="/og/tv.png">
+  <section class="section tight"><div class="container split">
+    <div class="stack">
+      <div class="cluster"><span class="eyebrow" style="margin:0">{cat.title}</span><StatusBadge status="planned" text="In development" /></div>
+      <h1 style="font-size: var(--fs-2xl)">{s.title}</h1>
+      <p class="lede">{s.summary}</p>
+      {track && <p>Goes with Academy <a href={`/academy/${track.slug}/`}>Track {track.number}: {track.title}</a>.</p>}
+      <h2 style="font-size: var(--fs-lg)">Planned episodes</h2>
+      <ol class="item-list" style="list-style:none">
+        {s.episodes.map((e) => <li><span class="xsmall muted">Episode {e.n} · not yet available</span><a href={`/tv/shows/${s.slug}/${e.slug}/`} style="font-weight:600">E{e.n}: {e.title}</a></li>)}
+      </ol>
+      <p class="small muted">Episode titles are a planned outline and may change.</p>
+    </div>
+    <ShowArt title={s.title} category={s.category} />
+  </div></section>
+</Base>

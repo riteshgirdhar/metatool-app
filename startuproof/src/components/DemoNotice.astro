@@ -1,0 +1,8 @@
+---
+interface Props { kind: string }
+const { kind } = Astro.props;
+---
+<div class="notice demo" role="note">
+  <strong>Demo {kind}</strong>
+  These are illustrative profiles that show how the directory works. They are not real {kind === 'profile' ? 'members' : kind}, carry no verification, and are hidden from search engines. Verified member profiles will replace them. <a href="/media/why-profiles-are-labelled-demo/">Why?</a>
+</div>

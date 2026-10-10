@@ -1,0 +1,9 @@
+---
+/* Typographic artwork for working-title shows (no photography or concept renders). */
+interface Props { title: string; category: string }
+const { title, category } = Astro.props;
+const palette: Record<string, string> = { build: '#0e6b5a', raise: '#23518c', scale: '#6b3f8f', ecosystem: '#8a4b00' };
+---
+<div class="artwork" style={`background:${palette[category] ?? '#1b1e22'}`} role="img" aria-label={`${title} title card`}>
+  <span>{title}<br /><span style="font-weight:500;font-size:.8rem;opacity:.85">Startup Roof TV · working title</span></span>
+</div>

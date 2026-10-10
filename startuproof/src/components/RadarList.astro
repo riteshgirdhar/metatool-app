@@ -1,0 +1,25 @@
+---
+import { KINDS, EDITIONS, monthLabel, type RadarItem } from '../data/radar';
+interface Props { items: RadarItem[]; headingLevel?: 'h2' | 'h3'; compact?: boolean }
+const { items, headingLevel = 'h3', compact = false } = Astro.props;
+const H = headingLevel;
+---
+<ul class="item-list">
+  {items.map((i) => (
+    <li data-kind={i.kind} data-editions={i.editions.join(' ')}>
+      <div class="meta-row">
+        <span class="badge">{KINDS[i.kind]}</span>
+        {i.amount && <strong style="color: var(--ink)">{i.amount.display}</strong>}
+        {i.stage && <span>{i.stage}</span>}
+        <span>{i.editions.map((e) => EDITIONS[e].label).join(' · ')}</span>
+      </div>
+      <H><a href={`/radar/item/${i.slug}/`}>{i.title}</a></H>
+      {!compact && <p>{i.summary}</p>}
+      <div class="meta-row">
+        <span>Source: {i.source.name}</span>
+        <span>Collected {new Date(`${i.ingestedAt}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</span>
+        {i.sourceUrlMonth && <span>Source URL dated {monthLabel(i.sourceUrlMonth)}</span>}
+      </div>
+    </li>
+  ))}
+</ul>

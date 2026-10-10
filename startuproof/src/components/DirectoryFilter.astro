@@ -1,0 +1,45 @@
+---
+/* Client-side filters over server-rendered rows. State lives in the URL so filtered views are shareable. */
+interface Facet { name: string; label: string; values: string[] }
+interface Props { facets: Facet[]; total: number; noun: string }
+const { facets, total, noun } = Astro.props;
+---
+<form class="filters" data-dir-filter role="search" aria-label={`Filter ${noun}`}>
+  <div class="field"><label for="dir-q">Search</label><input id="dir-q" class="input" type="search" name="q" placeholder="Name, sector, location" /></div>
+  {facets.map((f) => (
+    <div class="field"><label for={`dir-${f.name}`}>{f.label}</label>
+      <select id={`dir-${f.name}`} class="select" name={f.name}><option value="">All</option>{f.values.map((v) => <option value={v}>{v}</option>)}</select>
+    </div>
+  ))}
+  <p class="small muted" style="margin:0;flex-basis:100%" aria-live="polite" data-dir-count>{total} {noun}</p>
+</form>
+<div class="state" data-dir-empty hidden><h3>No {noun} match these filters</h3><p>Try fewer filters.</p><a class="btn btn-secondary" href="?">Clear filters</a></div>
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-dir-filter]');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-dir-item]'));
+  const grid = document.querySelector<HTMLElement>('[data-dir-grid]');
+  const empty = document.querySelector<HTMLElement>('[data-dir-empty]');
+  const count = document.querySelector<HTMLElement>('[data-dir-count]');
+  const noun = count?.textContent?.replace(/^\d+\s*/, '') ?? '';
+  function apply(push: boolean) {
+    if (!form) return;
+    const fd = new FormData(form); const p = new URLSearchParams(); let n = 0;
+    fd.forEach((v, k) => { if (v) p.set(k, String(v)); });
+    cards.forEach((c) => {
+      let ok = true;
+      p.forEach((v, k) => {
+        if (k === 'q') ok &&= (c.textContent ?? '').toLowerCase().includes(v.toLowerCase());
+        else ok &&= (c.dataset[k] ?? '').split('|').includes(v);
+      });
+      c.hidden = !ok; if (ok) n++;
+    });
+    if (count) count.textContent = `${n} ${noun}`;
+    if (grid && empty) { grid.hidden = n === 0; empty.hidden = n > 0; }
+    if (push) history.replaceState(null, '', `${location.pathname}${p.size ? `?${p}` : ''}`);
+  }
+  if (form) {
+    new URLSearchParams(location.search).forEach((v, k) => { const f = form.elements.namedItem(k) as HTMLInputElement | null; if (f) f.value = v; });
+    form.addEventListener('input', () => apply(true)); form.addEventListener('submit', (e) => { e.preventDefault(); apply(true); });
+    apply(false);
+  }
+</script>

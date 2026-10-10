@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+---
+<Base title="Referrals" description="Invite founders to Startup Roof with your personal referral link. Referrals are tracked on our servers; reward terms have not yet been approved." breadcrumbs={[{ name: 'Referrals' }]}>
+  <PageHero eyebrow="Referrals" title="Invite founders you rate" lede="Share your personal link. We record who joined through it and whether they completed onboarding.">
+    <div style="margin-top: var(--s4)"><StatusBadge status="beta" /></div>
+  </PageHero>
+  <section class="section tight"><div class="container split">
+    <div class="stack">
+      <h2 style="font-size: var(--fs-xl)">How it works</h2>
+      <ol class="steps">
+        <li><div><h3>Get your link</h3><p>Log in to see your referral link in your account.</p></div></li>
+        <li><div><h3>Someone joins</h3><p>When they sign up through your link and verify their email, the referral is recorded as pending.</p></div></li>
+        <li><div><h3>They complete onboarding</h3><p>The referral becomes qualified. Self-referrals and duplicate accounts don't count.</p></div></li>
+      </ol>
+      <div class="notice warn"><strong>Rewards are not yet available</strong>Reward terms have not been approved. We will publish them before any reward applies, and they will not be applied retroactively unless the published terms say so.</div>
+    </div>
+    <div class="card"><h2 style="font-size: var(--fs-lg); margin:0">Your referral link</h2><p>Your link, and the count of pending and qualified referrals, are in your account.</p><a class="btn btn-primary" href="/login/?next=/app/%23referrals">Log in to see your link</a><a class="btn btn-secondary" href="/signup/">Create an account</a></div>
+  </div></section>
+</Base>

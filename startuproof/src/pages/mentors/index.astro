@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import DirectoryFilter from '../../components/DirectoryFilter.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { MENTORS, initials } from '../../data/directory';
+const uniq = (a: string[]) => [...new Set(a)].sort();
+---
+<Base title="Mentor network" description="Operators and specialists who give founders office hours on sales, finance, product, hiring and market entry. Apply to become a mentor." breadcrumbs={[{ name: 'Mentors' }]}>
+  <PageHero eyebrow="Directory" title="Mentors" lede="Experienced operators who give founders focused office hours. Mentor profiles are reviewed before they are published." >
+    <div class="cluster"><a class="btn btn-primary" href="#become">Become a mentor</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container stack">
+    <DemoNotice kind="profiles" />
+    <DirectoryFilter noun="mentors" total={MENTORS.length} facets={[{ name: 'expertise', label: 'Expertise', values: uniq(MENTORS.flatMap((m) => m.expertise)) }, { name: 'sector', label: 'Sector', values: uniq(MENTORS.flatMap((m) => m.sectors)) }]} />
+    <ul class="grid cols-3" data-dir-grid style="list-style:none;padding:0;margin:0">
+      {MENTORS.map((m) => (
+        <li class="card link-card" data-dir-item data-expertise={m.expertise.join('|')} data-sector={m.sectors.join('|')}>
+          <div class="cluster" style="justify-content:space-between"><span class="avatar" aria-hidden="true">{initials(m.name)}</span><span class="badge demo">Demo profile</span></div>
+          <h2 style="font-size:1.125rem;margin:0"><a class="stretched" href={`/mentors/${m.slug}/`}>{m.name}</a></h2>
+          <p>{m.title}, {m.company}</p>
+          <div class="meta-row">{m.expertise.map((e) => <span class="tag">{e}</span>)}</div>
+        </li>
+      ))}
+    </ul>
+  </div></section>
+  <section class="section alt" id="become" aria-labelledby="become-h"><div class="container split">
+    <div><span class="eyebrow">Give back</span><h2 id="become-h">Become a mentor</h2><p class="lede">Tell us where you can help. We review every application and confirm your profile with you before it is published. Mentors are not shown as “verified” unless that review is complete.</p></div>
+    <div class="form-panel">
+      <Form type="mentor-application" id="mentor-apply" submitLabel="Apply to mentor" success="Thanks — your mentor application is in review.">
+        <div class="form-row two"><Field form="mentor-apply" name="name" label="Name" required autocomplete="name" /><Field form="mentor-apply" name="email" label="Email" type="email" required autocomplete="email" /></div>
+        <Field form="mentor-apply" name="profileUrl" label="LinkedIn or website" type="url" required />
+        <Field form="mentor-apply" name="expertise" label="Areas of expertise" required hint="E.g. enterprise sales, financial modelling, GCC market entry" />
+        <Field form="mentor-apply" name="availability" label="Availability" type="select" required options={[{ value: 'weekly', label: 'Weekly' }, { value: 'fortnightly', label: 'Fortnightly' }, { value: 'monthly', label: 'Monthly' }, { value: 'ad-hoc', label: 'Ad hoc' }]} />
+        <Field form="mentor-apply" name="message" label="What founders could you help most?" type="textarea" required minlength={20} />
+      </Form>
+    </div>
+  </div></section>
+</Base>

@@ -46,6 +46,7 @@ if (breadcrumbs?.length) {
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <meta name="robots" content={robots} />
+  {noindex && <meta name="sr-private" content="true" />}
   <link rel="canonical" href={canonical} />
   <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

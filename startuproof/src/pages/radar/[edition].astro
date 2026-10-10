@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import RadarBrowser from '../../components/RadarBrowser.astro';
+import RadarCoverage from '../../components/RadarCoverage.astro';
+import { EDITIONS, byEdition, type Edition } from '../../data/radar';
+export function getStaticPaths() {
+  return (Object.keys(EDITIONS) as Edition[]).map((edition) => ({ params: { edition } }));
+}
+const edition = Astro.params.edition as Edition;
+const meta = EDITIONS[edition];
+const items = byEdition(edition);
+const title = edition === 'global' ? 'Radar global edition' : `Radar ${meta.label} edition`;
+const desc = edition === 'global'
+  ? 'Startup funds, market data and analysis with a global or multi-region scope, summarised with source links.'
+  : `Startup rounds, investments, programmes and events connected to ${meta.name}, summarised with source links. Cross-border connections are stated on each item.`;
+---
+<Base title={title} description={desc} breadcrumbs={[{ name: 'Radar', href: '/radar/' }, { name: meta.label }]} ogImage="/og/radar.png">
+  <PageHero eyebrow="Radar" title={edition === 'global' ? 'Global edition' : `${meta.label} edition`} lede={desc} />
+  <section class="section tight"><div class="container split aside">
+    <div>
+      {items.length ? <RadarBrowser items={items} current={edition} /> : (
+        <div class="state"><h3>No reviewed items yet</h3><p>Nothing has passed review for this edition yet.</p><a class="btn btn-secondary" href="/radar/submit/">Suggest a story</a></div>
+      )}
+    </div>
+    <div class="stack"><RadarCoverage /></div>
+  </div></section>
+</Base>

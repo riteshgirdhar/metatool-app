@@ -1,0 +1,68 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import RadarList from '../../../components/RadarList.astro';
+import { RADAR, KINDS, EDITIONS, monthLabel, dateLabel, type RadarItem } from '../../../data/radar';
+export function getStaticPaths() { return RADAR.map((item) => ({ params: { slug: item.slug }, props: { item } })); }
+const { item } = Astro.props as { item: RadarItem };
+const related = RADAR.filter((r) => r.slug !== item.slug && r.editions.some((e) => item.editions.includes(e))).slice(0, 3);
+const primary = item.editions[0];
+const desc = item.summary.length > 158 ? `${item.summary.slice(0, 155).replace(/\s+\S*$/, '')}…` : item.summary;
+---
+<Base title={item.title} description={desc} ogType="article" ogImage="/og/radar.png"
+  breadcrumbs={[{ name: 'Radar', href: '/radar/' }, { name: EDITIONS[primary].label, href: `/radar/${primary}/` }, { name: item.title }]}>
+  <article class="section tight">
+    <div class="container split aside">
+      <div class="prose">
+        <div class="meta-row"><span class="badge">{KINDS[item.kind]}</span>{item.sector && <span>{item.sector}</span>}</div>
+        <h1 style="font-size: var(--fs-2xl); margin-top: var(--s3)">{item.title}</h1>
+        <p class="lede">{item.summary}</p>
+        {item.whyItMatters && (<><h2 style="font-size: var(--fs-lg); margin-top: var(--s5)">Why it matters</h2><p>{item.whyItMatters}</p></>)}
+        {item.connectionNote && <p class="notice"><strong>Why this appears in {item.editions.map((e) => EDITIONS[e].label).join(' and ')}</strong>{item.connectionNote}</p>}
+        <p><a class="btn btn-secondary" href={item.source.url} rel="noopener nofollow" target="_blank">Read the original at {item.source.name} <Icon name="external" /><span class="visually-hidden">(opens in a new tab)</span></a></p>
+        <div class="cluster" data-item-actions data-slug={item.slug} data-title={item.title}>
+          <button type="button" class="btn btn-ghost" data-share><Icon name="share" /> Share</button>
+          <button type="button" class="btn btn-ghost" data-save aria-pressed="false"><Icon name="bookmark" /> <span>Save on this device</span></button>
+          <span class="small muted" role="status" data-action-status></span>
+        </div>
+      </div>
+      <aside class="stack">
+        <dl class="facts" style="grid-template-columns:1fr">
+          {item.amount && <div><dt>Amount</dt><dd>{item.amount.display}<br /><span class="xsmall muted">{item.amount.basis}</span></dd></div>}
+          {item.stage && <div><dt>Stage</dt><dd>{item.stage}</dd></div>}
+          {item.companies.length > 0 && <div><dt>Companies</dt><dd>{item.companies.map((c) => `${c.name}${c.hq ? ` (${c.hq})` : ''}`).join(', ')}</dd></div>}
+          {item.investors.length > 0 && <div><dt>Investors / counterparties</dt><dd>{item.investors.map((c) => `${c.name}${c.hq ? ` (${c.hq})` : ''}`).join(', ')}</dd></div>}
+          {item.eventLocation && <div><dt>Event location</dt><dd>{item.eventLocation}</dd></div>}
+          <div><dt>Story geography</dt><dd>{item.storyGeography.length ? item.storyGeography.join(', ') : 'Not country-specific'}</dd></div>
+          <div><dt>Source</dt><dd><a href={item.source.url} rel="noopener nofollow">{item.source.name}</a></dd></div>
+          <div><dt>Dates</dt><dd class="small">Collected {dateLabel(item.ingestedAt)}<br />{item.publishedAt ? `Published ${dateLabel(item.publishedAt)}` : 'Publication date not yet verified'}{item.sourceUrlMonth && <><br /><span class="muted">Source URL dated {monthLabel(item.sourceUrlMonth)}</span></>}{item.reviewedAt && <><br />Reviewed {dateLabel(item.reviewedAt)}</>}</dd></div>
+        </dl>
+        <a class="small" href={`/radar/submit/?correction=${item.slug}`}>Report a correction</a>
+      </aside>
+    </div>
+  </article>
+  {related.length > 0 && <section class="section tight alt"><div class="container"><h2 style="font-size: var(--fs-xl)">More from {EDITIONS[primary].label}</h2><RadarList items={related} compact /></div></section>}
+  <script>
+    const box = document.querySelector<HTMLElement>('[data-item-actions]');
+    const status = box?.querySelector<HTMLElement>('[data-action-status]');
+    const saveBtn = box?.querySelector<HTMLButtonElement>('[data-save]');
+    const KEY = 'sr-radar-saved';
+    const read = (): string[] => { try { return JSON.parse(localStorage.getItem(KEY) ?? '[]'); } catch { return []; } };
+    const slug = box?.dataset.slug ?? '';
+    function render() { const on = read().includes(slug); saveBtn?.setAttribute('aria-pressed', String(on)); const s = saveBtn?.querySelector('span'); if (s) s.textContent = on ? 'Saved on this device' : 'Save on this device'; }
+    saveBtn?.addEventListener('click', () => {
+      const cur = read(); const on = cur.includes(slug);
+      try { localStorage.setItem(KEY, JSON.stringify(on ? cur.filter((s) => s !== slug) : [...cur, slug])); if (status) status.textContent = on ? 'Removed from saved items.' : 'Saved in this browser.'; }
+      catch { if (status) status.textContent = 'Saving is not available in this browser.'; }
+      render();
+    });
+    box?.querySelector('[data-share]')?.addEventListener('click', async () => {
+      const url = location.href.split('?')[0];
+      try {
+        if (navigator.share) { await navigator.share({ title: box.dataset.title, url }); return; }
+        await navigator.clipboard.writeText(url); if (status) status.textContent = 'Link copied.';
+      } catch { if (status) status.textContent = `Copy this link: ${url}`; }
+    });
+    render();
+  </script>
+</Base>

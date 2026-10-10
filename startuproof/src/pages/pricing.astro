@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import FeatureStatus from '../components/FeatureStatus.astro';
+import { PRICING } from '../config/site';
+const price = (p: (typeof PRICING.plans)[number]) => p.price === 0 ? 'Free' : p.price === null ? 'Price not yet set' : `${PRICING.currency} ${p.price.toLocaleString('en-GB')}${p.period ? ` / ${p.period}` : ''}`;
+---
+<Base title="Pricing" description="Startup Roof membership is free. Paid plans for founders, investors and partners are planned; prices are not yet set and no payments are taken." breadcrumbs={[{ name: 'Pricing' }]}>
+  <PageHero eyebrow="Pricing" title="Membership is free" lede="Paid plans are planned. Prices are not set and payment is not active, so nothing is charged today." />
+  <section class="section tight"><div class="container">
+    <div class="grid cols-4">
+      {PRICING.plans.map((p) => (
+        <div class="card">
+          <div class="cluster" style="justify-content:space-between"><h2 style="font-size:1.125rem;margin:0">{p.name}</h2><StatusBadge status={p.status} text={p.status === 'live' ? 'Available' : 'Not yet available'} /></div>
+          <p style="font-size: var(--fs-lg); color: var(--ink); font-weight: 650">{price(p)}</p>
+          <p>{p.summary}</p>
+          <div class="card-foot">{p.status === 'live' ? <a class="btn btn-primary" href="/signup/">Join free</a> : p.id === 'partner' ? <a class="btn btn-secondary" href="/partners/">Contact us</a> : <a class="btn btn-secondary" href="/signup/">Join free and get notified</a>}</div>
+        </div>
+      ))}
+    </div>
+    <h2 style="margin-top: var(--s8)">What's available today</h2>
+    <FeatureStatus />
+  </div></section>
+</Base>

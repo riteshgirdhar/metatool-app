@@ -1,0 +1,11 @@
+---
+import AuthShell from '../components/AuthShell.astro';
+import Field from '../components/forms/Field.astro';
+---
+<AuthShell page="forgot" title="Reset your password" heading="Reset your password" lede="We'll email you a link to choose a new password." description="Request a Startup Roof password reset link.">
+  <form class="form" data-auth-form novalidate>
+    <Field form="fg" name="email" label="Email" type="email" required autocomplete="email" />
+    <button type="submit" class="btn btn-primary btn-lg">Send reset link</button>
+  </form>
+  <p slot="after" class="small" style="margin-top: var(--s4)"><a href="/login/">Back to log in</a></p>
+</AuthShell>

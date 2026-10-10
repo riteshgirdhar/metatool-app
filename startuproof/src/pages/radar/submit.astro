@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+---
+<Base title="Submit a Radar story or correction" description="Send a startup round, fund, programme or correction to the Radar editors. Every submission is reviewed before publication." breadcrumbs={[{ name: 'Radar', href: '/radar/' }, { name: 'Submit' }]}>
+  <PageHero eyebrow="Radar" title="Submit a story or correction" lede="Send us a source link. Editors check relevance, geography, amounts and dates before anything is published — usually within a few working days." />
+  <section class="section tight"><div class="container narrow">
+    <div class="form-panel">
+      <Form type="radar-submission" id="radar-submit" submitLabel="Send to the editors" success="Thanks — your submission is in the review queue.">
+        <div class="form-row two">
+          <Field form="radar-submit" name="name" label="Your name" required autocomplete="name" />
+          <Field form="radar-submit" name="email" label="Email" type="email" required autocomplete="email" />
+        </div>
+        <Field form="radar-submit" name="url" label="Source URL" type="url" required hint="A public announcement or article, e.g. a press release or news report." />
+        <Field form="radar-submit" name="kind" label="What is it?" type="select" required options={[{ value: 'funding', label: 'Funding round or investment' }, { value: 'fund', label: 'Fund launch or close' }, { value: 'programme', label: 'Programme or open call' }, { value: 'event', label: 'Event' }, { value: 'correction', label: 'Correction to an existing item' }, { value: 'other', label: 'Other' }]} />
+        <Field form="radar-submit" name="note" label="Details" type="textarea" required minlength={10} hint="Company, amount and stage if disclosed, and which country it relates to. For corrections, say what is wrong." />
+      </Form>
+    </div>
+  </div></section>
+  <script>
+    const c = new URLSearchParams(location.search).get('correction');
+    if (c && /^[a-z0-9-]+$/.test(c)) {
+      const kind = document.querySelector<HTMLSelectElement>('#radar-submit-kind'); if (kind) kind.value = 'correction';
+      const url = document.querySelector<HTMLInputElement>('#radar-submit-url'); if (url && !url.value) url.value = `${location.origin}/radar/item/${c}/`;
+    }
+  </script>
+</Base>

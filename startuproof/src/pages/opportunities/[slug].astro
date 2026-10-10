@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { OPPORTUNITIES, type Opportunity } from '../../data/content';
+export function getStaticPaths() { return OPPORTUNITIES.map((o) => ({ params: { slug: o.slug }, props: { o } })); }
+const { o } = Astro.props as { o: Opportunity };
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+<Base title={o.name} description={`${o.summary} Organised by ${o.organiser}.`} breadcrumbs={[{ name: 'Opportunities', href: '/opportunities/' }, { name: o.name }]}>
+  <section class="section tight"><div class="container split aside">
+    <div class="prose">
+      <div class="meta-row"><span class="badge">{o.category}</span><StatusBadge status={o.status} /></div>
+      <h1 style="font-size: var(--fs-2xl); margin-top: var(--s3)">{o.name}</h1>
+      <p class="lede">{o.summary}</p>
+      <h2 style="font-size: var(--fs-lg)">What you get</h2><p>{o.benefit}</p>
+      <h2 style="font-size: var(--fs-lg)">Who can apply</h2><p>{o.eligibility}. Stages: {o.stages.join(', ')}.</p>
+      <a class="btn btn-primary btn-lg" href={o.applyHref}>Apply <Icon name="arrow-right" /></a>
+    </div>
+    <aside class="stack">
+      <dl class="facts" style="grid-template-columns:1fr">
+        <div><dt>Organiser</dt><dd>{o.organiser}</dd></div>
+        <div><dt>Deadline</dt><dd>{o.deadline ? fmt(o.deadline) : 'To be announced'}<br /><span class="xsmall muted">{o.dateStatus === 'provisional' ? 'Provisional — time and timezone to be confirmed' : `${o.deadlineTime ?? ''} ${o.deadlineTz ?? ''}`}</span></dd></div>
+        <div><dt>Location</dt><dd>{o.country}</dd></div>
+      </dl>
+      {o.dateStatus === 'confirmed' && o.deadline
+        ? <a class="btn btn-secondary" href={`/opportunities/${o.slug}.ics`} download><Icon name="calendar" /> Add deadline to calendar</a>
+        : <p class="small muted">A calendar file will be available once the deadline is confirmed.</p>}
+    </aside>
+  </div></section>
+</Base>

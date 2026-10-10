@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import DirectoryFilter from '../../components/DirectoryFilter.astro';
+import { STARTUPS, initials } from '../../data/directory';
+const uniq = (a: string[]) => [...new Set(a)].sort();
+---
+<Base title="Startup directory" description="Browse startups building in the UAE, GCC and beyond by sector, stage and market. Public profiles, with more detail for members." breadcrumbs={[{ name: 'Startups' }]}>
+  <PageHero eyebrow="Directory" title="Startups on Startup Roof" lede="Public profiles show what a company does. Members see traction and round details; financial information is limited to verified investors.">
+    <div class="cluster"><a class="btn btn-primary" href="/signup/?role=founder">List your startup</a><a class="btn btn-secondary" href="/investors/#for-investors">Investor access</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container stack">
+    <DemoNotice kind="profiles" />
+    <DirectoryFilter noun="startups" total={STARTUPS.length} facets={[{ name: 'sector', label: 'Sector', values: uniq(STARTUPS.map((s) => s.sector)) }, { name: 'stage', label: 'Stage', values: uniq(STARTUPS.map((s) => s.stage)) }, { name: 'country', label: 'HQ country', values: uniq(STARTUPS.map((s) => s.country)) }]} />
+    <ul class="grid cols-3" data-dir-grid style="list-style:none;padding:0;margin:0">
+      {STARTUPS.map((s) => (
+        <li class="card link-card" data-dir-item data-sector={s.sector} data-stage={s.stage} data-country={s.country}>
+          <div class="cluster" style="justify-content:space-between"><span class="avatar" aria-hidden="true">{initials(s.name)}</span><span class="badge demo">Demo profile</span></div>
+          <h2 style="font-size:1.125rem;margin:0"><a class="stretched" href={`/startups/${s.slug}/`}>{s.name}</a></h2>
+          <p>{s.oneLiner}</p>
+          <div class="meta-row"><span class="tag">{s.sector}</span><span class="tag">{s.stage}</span><span>{s.hq}</span></div>
+        </li>
+      ))}
+    </ul>
+  </div></section>
+</Base>

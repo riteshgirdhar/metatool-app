@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import RadarBrowser from '../../components/RadarBrowser.astro';
+import RadarCoverage from '../../components/RadarCoverage.astro';
+import { RADAR } from '../../data/radar';
+---
+<Base title="Radar: startup funding, funds and programmes" description="Editor-reviewed summaries of startup rounds, fund closes, programmes and ecosystem news across the UAE, Saudi Arabia, Qatar, Egypt, India and globally." breadcrumbs={[{ name: 'Radar' }]} ogImage="/og/radar.png">
+  <PageHero eyebrow="Radar" title="Startup funding and ecosystem news, checked before it's published" lede="Short summaries with source links, organised by the country each story is actually about." />
+  <section class="section tight"><div class="container split aside">
+    <div><RadarBrowser items={RADAR} current="all" /></div>
+    <div class="stack"><RadarCoverage /><a class="btn btn-secondary" href="/radar/submit/">Submit a story</a></div>
+  </div></section>
+</Base>

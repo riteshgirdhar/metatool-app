@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { OPPORTUNITIES } from '../../data/content';
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const today = new Date().toISOString().slice(0, 10);
+const open = OPPORTUNITIES.filter((o) => !o.deadline || o.deadline >= today);
+const closed = OPPORTUNITIES.filter((o) => o.deadline && o.deadline < today);
+---
+<Base title="Opportunities: open calls, programmes and competitions" description="Open calls from Startup Roof and partners — pitch competitions, exhibitions and programmes — with eligibility and deadlines." breadcrumbs={[{ name: 'Opportunities' }]}>
+  <PageHero eyebrow="Opportunities" title="Open calls for founders" lede="Programmes, competitions and calls you can apply to. Deadlines are shown exactly as confirmed by the organiser; provisional dates are marked." />
+  <section class="section tight"><div class="container split aside">
+    <div>
+      {open.length ? (
+        <ul class="item-list">
+          {open.map((o) => (
+            <li>
+              <div class="meta-row"><span class="badge">{o.category}</span><StatusBadge status={o.status} text={o.dateStatus === 'provisional' ? 'Provisional date' : 'Open'} /><span>{o.organiser}</span></div>
+              <h2 style="font-size:1.125rem;margin:0"><a href={`/opportunities/${o.slug}/`}>{o.name}</a></h2>
+              <p>{o.summary}</p>
+              <div class="meta-row"><span>Deadline: {o.deadline ? fmt(o.deadline) : 'to be announced'}{o.deadlineTz ? ` (${o.deadlineTz})` : ' · time and timezone to be confirmed'}</span><span>Stages: {o.stages.join(', ')}</span></div>
+            </li>
+          ))}
+        </ul>
+      ) : <div class="state"><h3>No open calls right now</h3><p>New calls are added after review.</p></div>}
+      {closed.length > 0 && <><h2 style="font-size: var(--fs-lg); margin-top: var(--s6)">Closed</h2><ul>{closed.map((o) => <li>{o.name} — closed {fmt(o.deadline!)}</li>)}</ul></>}
+      <p class="small muted" style="margin-top: var(--s5)">We list only opportunities we have checked. Sample listings from the previous site are not shown.</p>
+    </div>
+    <aside class="form-panel">
+      <h2 style="font-size: var(--fs-lg)">Submit an opportunity</h2>
+      <p class="small muted">Accelerators, funds, corporates and programmes: send us an open call. We verify dates and eligibility before listing.</p>
+      <Form type="opportunity-submission" id="opp-submit" submitLabel="Submit for review" success="Thanks — we'll review this opportunity.">
+        <Field form="opp-submit" name="name" label="Your name" required autocomplete="name" />
+        <Field form="opp-submit" name="email" label="Email" type="email" required autocomplete="email" />
+        <Field form="opp-submit" name="organiser" label="Organiser" required />
+        <Field form="opp-submit" name="title" label="Opportunity title" required />
+        <Field form="opp-submit" name="url" label="Official application URL" type="url" required />
+        <div class="form-row two"><Field form="opp-submit" name="deadline" label="Deadline" type="date" /><Field form="opp-submit" name="deadlineTz" label="Deadline timezone" hint="E.g. GST (UTC+4)" /></div>
+        <Field form="opp-submit" name="note" label="Eligibility and notes" type="textarea" />
+      </Form>
+    </aside>
+  </div></section>
+</Base>

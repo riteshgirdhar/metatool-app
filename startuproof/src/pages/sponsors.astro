@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+---
+<Base title="Sponsorship" description="Sponsor Founder Festival, Startup Roof programmes, Radar or Academy content. Packages are tailored; no sponsors have been announced yet." breadcrumbs={[{ name: 'Sponsors' }]}>
+  <PageHero eyebrow="Sponsorship" title="Support founders, reach the ecosystem" lede="Sponsorship is tailored to what you want to achieve: hiring, customers, brand or ecosystem leadership. We'll propose options after a conversation." />
+  <section class="section tight"><div class="container split">
+    <div>
+      <h2 style="font-size: var(--fs-xl)">Where sponsors can take part</h2>
+      <div class="grid cols-2">
+        <div class="card"><h3>Founder Festival</h3><p>Stages, zones, Capital Night and the Pitch Studio.</p></div>
+        <div class="card"><h3>Programmes</h3><p>Accelerator and incubator cohorts, prizes and pilots.</p></div>
+        <div class="card"><h3>Academy & TV</h3><p>Support a learning track or show, with editorial independence.</p></div>
+        <div class="card"><h3>Radar</h3><p>Support regional coverage. Sponsorship never affects what is reported.</p></div>
+      </div>
+      <p class="small muted" style="margin-top: var(--s5)">No sponsors are currently confirmed, so none are shown. Package prices are quoted individually.</p>
+    </div>
+    <div class="form-panel">
+      <Form type="sponsor" id="sponsor" submitLabel="Start a conversation" success="Thanks — we'll be in touch about sponsorship.">
+        <div class="form-row two"><Field form="sponsor" name="name" label="Name" required autocomplete="name" /><Field form="sponsor" name="email" label="Work email" type="email" required autocomplete="email" /></div>
+        <Field form="sponsor" name="organisation" label="Organisation" required autocomplete="organization" />
+        <Field form="sponsor" name="interest" label="Main interest" type="select" required options={[{ value: 'festival', label: 'Founder Festival' }, { value: 'programmes', label: 'Programmes' }, { value: 'academy', label: 'Academy' }, { value: 'tv', label: 'TV' }, { value: 'radar', label: 'Radar' }, { value: 'other', label: 'Other' }]} />
+        <Field form="sponsor" name="message" label="What would success look like for you?" type="textarea" required minlength={10} />
+      </Form>
+    </div>
+  </div></section>
+</Base>

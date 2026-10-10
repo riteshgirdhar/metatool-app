@@ -27,7 +27,7 @@ function reference(type: FormType) {
 const Envelope = z.object({
   type: z.string(),
   idempotencyKey: z.string().regex(/^[A-Za-z0-9-]{16,64}$/),
-  renderedAt: z.number().int().positive(),
+  elapsedMs: z.number().int().nonnegative().max(86_400_000),
   hp: z.string().optional(),
   fields: z.record(z.string(), z.unknown()),
 });
@@ -38,7 +38,7 @@ export async function handleSubmit(req: Request, d: Deps): Promise<Response> {
     if (!sameOrigin(req, d.allowedOrigins ?? [])) throw new HttpError(403, 'bad_origin', 'Submissions must come from this site.');
     const env = Envelope.safeParse(await readJson(req));
     if (!env.success) throw new HttpError(400, 'invalid_request', 'The form could not be read. Please reload the page and try again.');
-    const { type, idempotencyKey, renderedAt, hp, fields } = env.data;
+    const { type, idempotencyKey, elapsedMs, hp, fields } = env.data;
     if (!isFormType(type)) throw new HttpError(400, 'unknown_form', 'Unknown form.');
     const now = (d.now ?? Date.now)();
 
@@ -49,7 +49,7 @@ export async function handleSubmit(req: Request, d: Deps): Promise<Response> {
 
     // Spam controls: honeypot and minimum fill time. Respond like a validation failure, never as success.
     if (hp) throw new HttpError(400, 'rejected', 'Your submission could not be accepted.');
-    if (now - renderedAt < MIN_FILL_MS) throw new HttpError(429, 'too_fast', 'That was quicker than expected. Please wait a moment and submit again.');
+    if (elapsedMs < MIN_FILL_MS) throw new HttpError(429, 'too_fast', 'That was quicker than expected. Please wait a moment and submit again.');
 
     let principal: Principal | null = null;
     if (AUTH_REQUIRED.has(type)) principal = await requirePrincipal(req, d);

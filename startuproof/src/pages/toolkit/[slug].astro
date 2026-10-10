@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { TOOLS, GUIDES, TRACKS, type Tool } from '../../data/content';
+export function getStaticPaths() { return TOOLS.map((t) => ({ params: { slug: t.slug }, props: { t } })); }
+const { t } = Astro.props as { t: Tool };
+const guide = t.guide ? GUIDES.find((g) => g.slug === t.guide) : undefined;
+const track = TRACKS.find((x) => x.slug === t.track);
+---
+<Base title={`${t.title} (free template)`} description={t.summary} breadcrumbs={[{ name: 'Toolkit', href: '/toolkit/' }, { name: t.title }]}>
+  <section class="section tight"><div class="container narrow stack">
+    <span class="eyebrow">Toolkit · {t.format}</span>
+    <h1 style="font-size: var(--fs-2xl)">{t.title}</h1>
+    <p class="lede">{t.summary}</p>
+    <div class="cluster"><a class="btn btn-primary btn-lg" href={t.file} download><Icon name="download" /> Download {t.format}</a>{guide && <a class="btn btn-secondary btn-lg" href={`/academy/guides/${guide.slug}/`}>Read the guide</a>}</div>
+    <p class="small muted">Free to use and adapt. Templates are general guidance, not legal, tax or investment advice.{track && <> Part of <a href={`/academy/${track.slug}/`}>{track.title}</a>.</>}</p>
+  </div></section>
+</Base>

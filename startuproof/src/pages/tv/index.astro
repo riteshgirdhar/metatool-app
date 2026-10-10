@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ShowArt from '../../components/ShowArt.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { SHOWS, TV_CATEGORIES } from '../../data/content';
+---
+<Base title="Startup Roof TV" description="Planned founder programming from Startup Roof: Office Hours, The Raise, Market Entry and Radar Weekly. No episodes are published yet." breadcrumbs={[{ name: 'TV' }]} ogImage="/og/tv.png">
+  <PageHero eyebrow="Startup Roof TV" title="Founder programming, in production planning" lede="Short shows that go with the Academy: real founders and operators working through real problems.">
+    <div class="notice warn" style="margin-top: var(--s5)"><strong>No episodes are available yet.</strong> The previous catalogue used third-party sample streams and concept artwork; those have been removed. Shows below are working titles. Paid viewing is not available.</div>
+  </PageHero>
+  <section class="section tight"><div class="container">
+    <nav aria-label="TV sections" class="chips">
+      {TV_CATEGORIES.map((c) => <a class="chip" href={`/tv/category/${c.slug}/`}>{c.title}</a>)}
+      <a class="chip" href="/tv/learning/">My learning</a><a class="chip" href="/tv/live/">Live</a>
+    </nav>
+    <h2>Shows in development</h2>
+    <ul class="grid cols-2" style="list-style:none;padding:0">
+      {SHOWS.map((s) => (
+        <li class="card link-card">
+          <ShowArt title={s.title} category={s.category} />
+          <div class="cluster" style="justify-content:space-between"><h3><a class="stretched" href={`/tv/shows/${s.slug}/`}>{s.title}</a></h3><StatusBadge status="planned" /></div>
+          <p>{s.summary}</p>
+          <span class="xsmall muted">{s.episodes.length} planned episode{s.episodes.length > 1 ? 's' : ''} · {TV_CATEGORIES.find((c) => c.slug === s.category)?.title}</span>
+        </li>
+      ))}
+    </ul>
+  </div></section>
+  <script>
+    // Compatibility for old hash links such as /tv/#show=the-raise, /tv/#/show/the-raise or /tv/#/watch/the-raise/e1-…
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (h) {
+      const m = h.match(/^\/?(?:show[=/])([a-z0-9-]+)(?:[/&](?:ep(?:isode)?[=/])?([a-z0-9-]+))?$/) || h.match(/^\/?watch[=/]([a-z0-9-]+)(?:\/([a-z0-9-]+))?$/);
+      const known = new Set(Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href^="/tv/shows/"]')).map((a) => a.pathname.split('/')[3]));
+      if (m && known.has(m[1])) location.replace(`/tv/shows/${m[1]}/${m[2] ? `${m[2]}/` : ''}`);
+      else if (/^\/?live/.test(h)) location.replace('/tv/live/');
+      else if (/^\/?(learning|watchlist|my)/.test(h)) location.replace('/tv/learning/');
+    }
+  </script>
+</Base>

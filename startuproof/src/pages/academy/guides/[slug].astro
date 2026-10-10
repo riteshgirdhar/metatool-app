@@ -1,0 +1,25 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { GUIDES, TRACKS, TOOLS, type Guide } from '../../../data/content';
+import { SITE } from '../../../config/site';
+export function getStaticPaths() { return GUIDES.map((g) => ({ params: { slug: g.slug }, props: { g } })); }
+const { g } = Astro.props as { g: Guide };
+const track = TRACKS.find((t) => t.slug === g.track)!;
+const tool = g.download ? TOOLS.find((t) => t.slug === g.download) : undefined;
+const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.summary, author: { '@type': 'Organization', name: SITE.name }, publisher: { '@type': 'Organization', name: SITE.name }, isPartOf: { '@type': 'Course', name: track.title } };
+---
+<Base title={g.title} description={g.summary} ogType="article" jsonLd={ld} breadcrumbs={[{ name: 'Academy', href: '/academy/' }, { name: track.title, href: `/academy/${track.slug}/` }, { name: g.title }]} ogImage="/og/academy.png">
+  <article class="section tight"><div class="container split aside">
+    <div class="prose">
+      <span class="eyebrow">Track {track.number}: {track.title} · {g.minutes} min read</span>
+      <h1 style="font-size: var(--fs-2xl)">{g.title}</h1>
+      <p class="lede">{g.summary}</p>
+      <Fragment set:html={g.body} />
+    </div>
+    <aside class="stack">
+      {tool && <div class="card"><span class="xsmall muted">Use with this guide</span><h2 style="font-size: var(--fs-lg); margin:0">{tool.title}</h2><p>{tool.summary}</p><a class="btn btn-secondary" href={tool.file} download><Icon name="download" /> Download ({tool.format})</a></div>}
+      <div class="card"><h2 style="font-size: var(--fs-base); margin:0">Track progress</h2><p>Save your progress and get next steps in Founder OS.</p><a class="link-arrow" href="/signup/?role=founder">Join free <Icon name="arrow-right" /></a></div>
+    </aside>
+  </div></article>
+</Base>

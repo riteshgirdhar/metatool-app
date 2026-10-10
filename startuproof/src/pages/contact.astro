@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+---
+<Base title="Contact" description="Contact Startup Roof about partnerships, press, your account or anything else. Every message gets a reference number." breadcrumbs={[{ name: 'Contact' }]}>
+  <PageHero eyebrow="Contact" title="Contact Startup Roof" lede="Send us a message and you'll get a reference number straight away. We aim to reply within three working days." />
+  <section class="section tight"><div class="container split">
+    <div class="form-panel">
+      <Form type="contact" id="contact" submitLabel="Send message" success="Your message has been received.">
+        <div class="form-row two"><Field form="contact" name="name" label="Name" required autocomplete="name" /><Field form="contact" name="email" label="Email" type="email" required autocomplete="email" /></div>
+        <Field form="contact" name="organisation" label="Organisation (optional)" autocomplete="organization" />
+        <Field form="contact" name="topic" label="Topic" type="select" required options={[{ value: 'general', label: 'General' }, { value: 'account', label: 'My account' }, { value: 'support', label: 'Help using the site' }, { value: 'partnership', label: 'Partnership' }, { value: 'press', label: 'Press' }, { value: 'other', label: 'Other' }]} />
+        <Field form="contact" name="message" label="Message" type="textarea" required minlength={10} />
+      </Form>
+    </div>
+    <div class="stack">
+      <h2 style="font-size: var(--fs-lg)">Looking for something specific?</h2>
+      <ul>
+        <li><a href="/support/">Help centre</a> — account, sign-in and directory questions</li>
+        <li><a href="/partners/">Partnerships</a> and <a href="/sponsors/">sponsorship</a></li>
+        <li><a href="/radar/submit/">Radar story or correction</a></li>
+        <li><a href="/pitch/">Apply to pitch</a></li>
+      </ul>
+      <p class="small muted">We don't publish an email address yet; this form is the fastest way to reach the team.</p>
+    </div>
+  </div></section>
+</Base>

@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Field from '../../components/forms/Field.astro';
+import { STAGE_OPTIONS } from '../../components/forms/StageOptions';
+---
+<Base title="Complete your profile" description="Startup Roof onboarding." noindex>
+  <section class="section tight" data-app="onboarding"><div class="container" style="max-width: 38rem">
+    <div data-app-loading class="skeleton" style="height:12rem" aria-busy="true"></div>
+    <div data-app-unavailable hidden class="notice warn"><strong>Onboarding is temporarily unavailable.</strong> Sign-in is not available on this preview right now.</div>
+    <div data-app-error hidden class="notice danger"><strong>Something went wrong.</strong> Refresh or <a href="/login/">log in again</a>.</div>
+    <div data-app-ready hidden class="stack">
+      <span class="eyebrow">Step 2 of 2</span>
+      <h1 style="font-size: var(--fs-2xl)">Tell us a little more</h1>
+      <p class="muted">These answers shape your Founder OS view and what we suggest. You can change them later.</p>
+      <div class="notice" data-onb-status tabindex="-1" role="status" hidden></div>
+      <form class="form form-panel" data-onboarding-form novalidate>
+        <div class="form" data-role-section="founder">
+          <Field form="ob" name="company" label="Company name" autocomplete="organization" hint="Leave blank if you haven't named it yet." />
+          <div class="form-row two"><Field form="ob" name="stage" label="Stage" type="select" options={STAGE_OPTIONS} /><Field form="ob" name="sector" label="Sector" /></div>
+          <Field form="ob" name="country" label="Where is the company based?" autocomplete="country-name" />
+          <Field form="ob" name="focus" label="What's your main focus for the next 90 days?" type="textarea" />
+        </div>
+        <div class="form" data-role-section="investor" hidden>
+          <div class="notice"><strong>Investor access needs verification</strong>Your account currently has member access. <a href="/investors/#for-investors">Apply for verification</a> to see investor-restricted information.</div>
+          <Field form="ob" name="firm" label="Firm (or “Independent angel”)" />
+          <Field form="ob" name="stages_of_interest" label="Stages you invest in" />
+        </div>
+        <div class="form" data-role-section="mentor" hidden>
+          <Field form="ob" name="expertise" label="Areas of expertise" />
+          <p class="small">To appear in the mentor directory, also <a href="/mentors/#become">apply as a mentor</a>.</p>
+        </div>
+        <div class="form" data-role-section="partner" hidden>
+          <Field form="ob" name="organisation" label="Organisation" autocomplete="organization" />
+          <p class="small">For partnership discussions, use the <a href="/partners/">partner enquiry form</a>.</p>
+        </div>
+        <div class="form" data-role-section="other" hidden>
+          <Field form="ob" name="interest" label="What brings you to Startup Roof?" type="textarea" />
+        </div>
+        <div class="cluster"><button type="submit" class="btn btn-primary btn-lg">Save and continue</button><a href="/app/" class="btn btn-ghost">Skip for now</a></div>
+      </form>
+    </div>
+  </div></section>
+  <script>import '../../scripts/app';</script>
+</Base>

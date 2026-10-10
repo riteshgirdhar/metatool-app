@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import OsPreview from '../components/OsPreview.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+<Base title="Founder OS" description="Founder OS is the Startup Roof workspace for founders: company profile, readiness view, next actions, applications and introductions in one place." breadcrumbs={[{ name: 'Founder OS' }]}>
+  <PageHero eyebrow="Founder OS" title="Know where your company stands and what to do next" lede="A workspace that turns your company profile into a readiness view and a short list of actions — and connects you to the rest of Startup Roof.">
+    <div class="cluster"><a class="btn btn-primary btn-lg" href="/signup/?role=founder">Start free</a><StatusBadge status="beta" text="Early access" /></div>
+  </PageHero>
+  <section class="section"><div class="container split even">
+    <ol class="steps">
+      <li><div><h3>Create your account</h3><p>Email and password, then confirm your email. That's all we need to start.</p></div></li>
+      <li><div><h3>Describe your company</h3><p>Stage, sector, market, team and what you're working on. Takes about five minutes; you can stop and return.</p></div></li>
+      <li><div><h3>See your readiness view</h3><p>Scores across product, traction, team and fundraising, with the reasoning shown. You can correct anything.</p></div></li>
+      <li><div><h3>Work through next actions</h3><p>Each links to an Academy guide or Toolkit template. Mark them done as you go.</p></div></li>
+      <li><div><h3>Apply and connect</h3><p>Use your profile for programme and Festival applications, and request introductions to mentors and verified investors.</p></div></li>
+    </ol>
+    <OsPreview />
+  </div></section>
+  <section class="section alt"><div class="container">
+    <h2>What Founder OS is not</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Not an automatic investor match</h3><p>Introductions are requested and accepted by people, not pushed by an algorithm.</p></div>
+      <div class="card"><h3>Not public by default</h3><p>You choose what is public, what members see, and what only verified investors see.</p></div>
+      <div class="card"><h3>Not a paid product yet</h3><p>Early access is free. Any future paid plan will be announced with prices before it applies.</p></div>
+    </div>
+  </div></section>
+  <CtaBand title="Start your Founder OS profile" text="Free during early access." primary={{ label: 'Create account', href: '/signup/?role=founder' }} secondary={{ label: 'Log in', href: '/login/?next=/app/' }} />
+</Base>

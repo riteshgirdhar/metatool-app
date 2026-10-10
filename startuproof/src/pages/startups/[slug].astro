@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import MemberSlot from '../../components/MemberSlot.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { STARTUPS, initials, type StartupPublic } from '../../data/directory';
+export function getStaticPaths() { return STARTUPS.map((s) => ({ params: { slug: s.slug }, props: { s } })); }
+const { s } = Astro.props as { s: StartupPublic };
+---
+<Base title={`${s.name} (demo profile)`} description={`${s.name}: ${s.oneLiner} Demo profile on the Startup Roof directory.`} noindex breadcrumbs={[{ name: 'Startups', href: '/startups/' }, { name: s.name }]}>
+  <section class="section tight"><div class="container split aside">
+    <div class="stack">
+      <DemoNotice kind="profile" />
+      <div class="cluster"><span class="avatar" aria-hidden="true">{initials(s.name)}</span><div><h1 style="font-size: var(--fs-2xl); margin:0">{s.name}</h1><p class="muted" style="margin:0">{s.tagline}</p></div></div>
+      <p class="lede">{s.oneLiner}</p>
+      <p>{s.description}</p>
+      <dl class="facts">
+        <div><dt>Sector</dt><dd>{s.sector}</dd></div><div><dt>Stage</dt><dd>{s.stage}</dd></div>
+        <div><dt>Headquarters</dt><dd>{s.hq}</dd></div><div><dt>Markets</dt><dd>{s.markets.join(', ')}</dd></div>
+        <div><dt>Founded</dt><dd>{s.yearFounded}</dd></div><div><dt>Team size</dt><dd>{s.teamSize}</dd></div>
+        <div><dt>Business model</dt><dd>{s.businessModel}</dd></div>
+      </dl>
+      <MemberSlot type="startups" slug={s.slug} title="Traction and round details" text="Traction, customers, competitors and the current round are visible to signed-in members. Financial information is limited to verified investors." intent="view-startup" />
+    </div>
+    <aside class="stack">
+      <div class="form-panel">
+        <h2 style="font-size: var(--fs-lg)">Request an introduction</h2>
+        <p class="small muted">Members can ask to be introduced. The company decides whether to accept. Requests to demo profiles are recorded for testing only and are not forwarded.</p>
+        <Form type="intro-request" id={`intro-${s.slug}`} submitLabel="Send request" success="Your introduction request was recorded." note="We share your name and message with the company only if they accept.">
+          <input type="hidden" name="targetType" value="startup" /><input type="hidden" name="targetSlug" value={s.slug} />
+          <Field form={`intro-${s.slug}`} name="message" label="Why do you want to connect?" type="textarea" required minlength={20} />
+        </Form>
+      </div>
+    </aside>
+  </div></section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import type { FormType } from '../../lib/forms';
+interface Props { type: FormType; id: string; submitLabel: string; success?: string; note?: string }
+const { type, id, submitLabel, success, note } = Astro.props;
+---
+<form class="form" id={id} data-form={type} action="/api/submit" method="post" data-success={success} novalidate>
+  <div class="form-status" data-form-status tabindex="-1" role="status" aria-live="polite"></div>
+  <div class="form" data-form-fields>
+    <slot />
+    <div class="hp-field" aria-hidden="true">
+      <label for={`${id}-hp`}>Leave this field empty</label>
+      <input id={`${id}-hp`} name="_company_website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <p class="xsmall muted" style="margin:0">
+      {note ?? 'We use these details only to respond to this request.'} See our <a href="/privacy/">privacy notice</a>. Fields marked <span class="req">*</span> are required.
+    </p>
+    <div><button type="submit" class="btn btn-primary btn-lg">{submitLabel}</button></div>
+  </div>
+</form>
+<script>import '../../scripts/forms';</script>

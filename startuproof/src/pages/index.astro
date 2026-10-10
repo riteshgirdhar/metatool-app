@@ -1,0 +1,170 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import OsPreview from '../components/OsPreview.astro';
+import RadarList from '../components/RadarList.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import { SITE, FESTIVAL } from '../config/site';
+import { byEdition } from '../data/radar';
+import { OPPORTUNITIES, TOOLS, TRACKS, GUIDES } from '../data/content';
+
+const radar = byEdition('uae').slice(0, 4);
+const tools = TOOLS.slice(0, 3);
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const faqs = [
+  { q: 'Is Startup Roof free?', a: '<p>Yes. Membership is free and includes Radar, Academy, Toolkit downloads, directory browsing and applications. Paid plans are planned; prices are not yet set and nothing is charged. See <a href="/pricing/">pricing</a>.</p>' },
+  { q: 'Who is it for?', a: '<p>Founders first, plus the people who help them: investors, mentors, accelerators, corporates, service providers, universities and government programmes.</p>' },
+  { q: 'Are the startups and investors in the directory real?', a: '<p>Not yet. Profiles shown today are clearly labelled demo profiles. Verified member profiles will replace them as onboarding completes. <a href="/media/why-profiles-are-labelled-demo/">Read why</a>.</p>' },
+  { q: 'If I sign up as an investor, can I see startup financials?', a: '<p>Not straight away. Investor access requires a separate verification review. Until then you have the same access as any member.</p>' },
+  { q: 'When is Founder Festival?', a: `<p>Planning is under way for Dubai, provisionally ${fmt(FESTIVAL.dates.start)} to ${fmt(FESTIVAL.dates.end)}. The venue and programme are not yet announced.</p>` },
+];
+const orgLd = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.canonicalOrigin, description: SITE.description };
+const siteLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.canonicalOrigin,
+  potentialAction: { '@type': 'SearchAction', target: `${SITE.canonicalOrigin}/search/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } };
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={[orgLd, siteLd]}>
+  <section class="hero">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">For founders across the UAE, GCC and beyond</span>
+        <h1>Build, connect, raise and scale — under one roof.</h1>
+        <p class="lede">Startup Roof brings together the tools, people and information a founder needs: a readiness workspace, investor and mentor directories, verified startup news, practical learning and free templates.</p>
+        <div class="cluster">
+          <a class="btn btn-primary btn-lg" href="/signup/?role=founder">Join free as a founder</a>
+          <a class="btn btn-secondary btn-lg" href="/investors/#for-investors">I'm an investor</a>
+        </div>
+        <p class="small muted" style="margin-top: var(--s4)">Free membership. No card required. Paid plans are not yet available.</p>
+      </div>
+      <OsPreview />
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="start-heading">
+    <div class="container">
+      <div class="section-head"><div><h2 id="start-heading">Three things you can do today</h2><p>No waiting list for these — they work now.</p></div></div>
+      <ol class="grid cols-3" style="list-style:none;padding:0;margin:0">
+        <li class="card">
+          <span class="eyebrow" style="margin:0">Step 1</span>
+          <h3>Create your founder profile</h3>
+          <p>Answer a few questions about your company and stage. Founder OS turns them into a readiness view and a short list of next actions.</p>
+          <div class="card-foot"><a class="link-arrow" href="/signup/?role=founder">Create profile <Icon name="arrow-right" /></a></div>
+        </li>
+        <li class="card">
+          <span class="eyebrow" style="margin:0">Step 2</span>
+          <h3>Follow funding in your market</h3>
+          <p>Radar summarises rounds, funds and programmes with source links — reviewed for relevance and geography.</p>
+          <div class="card-foot"><a class="link-arrow" href="/radar/uae/">Open the UAE edition <Icon name="arrow-right" /></a></div>
+        </li>
+        <li class="card">
+          <span class="eyebrow" style="margin:0">Step 3</span>
+          <h3>Download a working template</h3>
+          <p>Investor pipeline, unit economics, 13-week cash flow and more — free, no sign-up needed.</p>
+          <div class="card-foot"><a class="link-arrow" href="/toolkit/">Browse the Toolkit <Icon name="arrow-right" /></a></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="radar-heading">
+    <div class="container split aside">
+      <div>
+        <div class="section-head">
+          <div><span class="eyebrow">Radar · UAE edition</span><h2 id="radar-heading">Latest from the UAE ecosystem</h2>
+          <p>Stories are included when they involve a UAE company, investor or programme. Cross-border connections are stated on each item.</p></div>
+        </div>
+        <RadarList items={radar} />
+        <p style="margin-top: var(--s5)"><a class="link-arrow" href="/radar/">All Radar editions <Icon name="arrow-right" /></a></p>
+      </div>
+      <aside class="stack" aria-labelledby="opps-heading">
+        <div class="card">
+          <h2 id="opps-heading" style="font-size: var(--fs-lg); margin:0">Open calls</h2>
+          <ul class="item-list" style="border-top:0">
+            {OPPORTUNITIES.map((o) => (
+              <li style="padding-block: var(--s3)">
+                <h3 style="font-size: var(--fs-base)"><a href={`/opportunities/${o.slug}/`}>{o.name}</a></h3>
+                <span class="xsmall muted">Deadline {o.deadline ? fmt(o.deadline) : 'to be announced'} ({o.dateStatus})</span>
+              </li>
+            ))}
+          </ul>
+          <a class="link-arrow small" href="/opportunities/">All opportunities <Icon name="arrow-right" /></a>
+        </div>
+        <div class="card">
+          <h2 style="font-size: var(--fs-lg); margin:0">Free templates</h2>
+          <ul style="list-style:none;padding:0;margin:0" class="small">
+            {tools.map((t) => <li style="padding-block: var(--s2); border-bottom:1px solid var(--line)"><a href={`/toolkit/${t.slug}/`}>{t.title}</a> <span class="muted">· {t.format}</span></li>)}
+          </ul>
+          <a class="link-arrow small" href="/toolkit/">Full Toolkit <Icon name="arrow-right" /></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="os-heading">
+    <div class="container split even">
+      <div>
+        <span class="eyebrow">Founder OS <StatusBadge status="beta" /></span>
+        <h2 id="os-heading">One workspace from idea to Series A</h2>
+        <p class="lede">Founder OS keeps your company profile, readiness checks and next actions in one place, and connects them to the rest of Startup Roof.</p>
+        <ul>
+          <li><strong>Readiness view</strong> across product, traction, team and fundraising — based on your answers, not a black box.</li>
+          <li><strong>Next actions</strong> linked to the Academy guide or Toolkit template that helps.</li>
+          <li><strong>Applications</strong> to Startup Roof programmes and Festival calls from one profile.</li>
+          <li><strong>Introductions</strong> to mentors and verified investors, recorded so nothing is lost.</li>
+        </ul>
+        <a class="btn btn-secondary" href="/founder-os/">How Founder OS works</a>
+      </div>
+      <div class="stack">
+        <h3>Learn with the Academy</h3>
+        <p class="muted">Nine tracks from first interviews to international expansion. {GUIDES.length} practical guides are published; more follow.</p>
+        <ul class="item-list">
+          {TRACKS.slice(0, 5).map((t) => <li style="padding-block: var(--s3)"><a href={`/academy/${t.slug}/`} style="font-weight:600">{t.number}. {t.title}</a><span class="xsmall muted">{t.outcome}</span></li>)}
+        </ul>
+        <a class="link-arrow" href="/academy/">All nine tracks <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="festival-heading">
+    <div class="container">
+      <div class="card" style="padding: clamp(1.5rem, 1rem + 2vw, 2.5rem)">
+        <div class="cluster" style="justify-content:space-between">
+          <span class="eyebrow" style="margin:0">Founder Festival · Dubai</span><StatusBadge status="planned" text="Planning" />
+        </div>
+        <h2 id="festival-heading" style="margin-top: var(--s3)">Founder Festival 2027 is being planned</h2>
+        <div class="grid cols-3" style="margin-top: var(--s3)">
+          <div><strong>Dates</strong><p class="muted small">Provisionally {fmt(FESTIVAL.dates.start)} – {fmt(FESTIVAL.dates.end)}</p></div>
+          <div><strong>Venue</strong><p class="muted small">Not yet announced</p></div>
+          <div><strong>Format</strong><p class="muted small">{FESTIVAL.structure.join(' · ')}</p></div>
+        </div>
+        <div class="cluster">
+          <a class="btn btn-primary" href="/festival/#interest">Register interest</a>
+          <a class="btn btn-secondary" href="/pitch/">Apply to pitch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="who-heading">
+    <div class="container">
+      <div class="section-head"><div><h2 id="who-heading">Not a founder? There's a place for you too</h2></div></div>
+      <div class="grid cols-4">
+        <a class="card link-card" href="/investors/#for-investors" style="text-decoration:none;color:inherit"><Icon name="briefcase" /><h3>Investors</h3><p>Apply for verified access to founder profiles and deal flow.</p></a>
+        <a class="card link-card" href="/mentors/#become" style="text-decoration:none;color:inherit"><Icon name="users" /><h3>Mentors</h3><p>Offer office hours to founders at the right stage.</p></a>
+        <a class="card link-card" href="/partners/" style="text-decoration:none;color:inherit"><Icon name="building" /><h3>Partners</h3><p>Universities, corporates, government and accelerators.</p></a>
+        <a class="card link-card" href="/marketplace/" style="text-decoration:none;color:inherit"><Icon name="layers" /><h3>Service providers</h3><p>Apply to list legal, finance and growth services.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-heading">
+    <div class="container narrow">
+      <h2 id="faq-heading">Questions</h2>
+      <FaqList items={faqs} />
+      <p style="margin-top: var(--s5)"><a href="/faq/">More answers</a></p>
+    </div>
+  </section>
+
+  <CtaBand title="Start with a free founder profile" text="Two minutes to sign up. Your readiness view and next actions are ready as soon as you finish." primary={{ label: 'Join free', href: '/signup/?role=founder' }} secondary={{ label: 'Explore Radar first', href: '/radar/' }} />
+</Base>

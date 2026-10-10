@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found" description="The page you were looking for does not exist." noindex>
+  <section class="section"><div class="container narrow stack">
+    <span class="eyebrow">Error 404</span>
+    <h1>We couldn't find that page</h1>
+    <p class="lede">It may have moved during our rebuild. Try search, or one of these:</p>
+    <form role="search" action="/search/" method="get" class="cluster"><label for="nf-q" class="visually-hidden">Search</label><input id="nf-q" class="input" name="q" type="search" style="flex:1;min-width:12rem" /><button class="btn btn-primary">Search</button></form>
+    <ul><li><a href="/">Home</a></li><li><a href="/radar/">Radar</a></li><li><a href="/academy/">Academy</a></li><li><a href="/contact/">Contact</a></li></ul>
+  </div></section>
+</Base>

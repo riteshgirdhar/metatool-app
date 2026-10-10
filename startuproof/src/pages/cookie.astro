@@ -1,0 +1,14 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+---
+<LegalPage title="Cookies and local storage" description="What this Startup Roof preview site stores in your browser.">
+  <p>This site does not set advertising or analytics cookies.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Item</th><th scope="col">Type</th><th scope="col">Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Supabase session (sb-…)</td><td>Local storage</td><td>Keeps you logged in after you sign in. Removed when you log out.</td></tr>
+      <tr><td>sr-radar-saved</td><td>Local storage</td><td>Radar items you chose to save on this device.</td></tr>
+      <tr><td>sr-idem-…, sr-draft-…</td><td>Session storage</td><td>Prevents duplicate form submissions and keeps your draft if you need to log in. Cleared when the tab closes.</td></tr>
+    </tbody>
+  </table></div>
+</LegalPage>

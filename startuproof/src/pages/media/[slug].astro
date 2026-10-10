@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { STORIES, type Story } from '../../data/content';
+import { SITE } from '../../config/site';
+export function getStaticPaths() { return STORIES.map((s) => ({ params: { slug: s.slug }, props: { s } })); }
+const { s } = Astro.props as { s: Story };
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: s.title, description: s.summary, datePublished: s.date, author: { '@type': 'Organization', name: SITE.name }, publisher: { '@type': 'Organization', name: SITE.name } };
+---
+<Base title={s.title} description={s.summary} ogType="article" jsonLd={ld} breadcrumbs={[{ name: 'Stories', href: '/media/' }, { name: s.title }]}>
+  <article class="section tight"><div class="container narrow prose">
+    <span class="eyebrow">Startup Roof · <time datetime={s.date}>{fmt(s.date)}</time></span>
+    <h1 style="font-size: var(--fs-2xl)">{s.title}</h1>
+    <p class="lede">{s.summary}</p>
+    <Fragment set:html={s.body} />
+  </div></article>
+</Base>

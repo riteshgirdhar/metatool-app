@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+interface Props { type: 'startups' | 'investors' | 'mentors'; slug?: string; mode?: string; title: string; text: string; intent?: string }
+const { type, slug, mode, title, text, intent } = Astro.props;
+---
+<section class="locked" data-member-slot data-type={type} data-slug={slug} data-mode={mode} data-intent={intent} aria-labelledby={`ms-${type}-${slug ?? mode}`}>
+  <h2 id={`ms-${type}-${slug ?? mode}`} style="font-size: var(--fs-lg); display:flex; gap:.5rem; align-items:center"><Icon name="lock" /> {title}</h2>
+  <div data-member-body>
+    <p class="small">{text}</p>
+    <div class="cluster"><a class="btn btn-primary" href="/login/" data-login-link>Log in to view</a><a class="btn btn-secondary" href="/signup/">Join free</a></div>
+  </div>
+</section>
+<script>import '../scripts/member-gate';</script>

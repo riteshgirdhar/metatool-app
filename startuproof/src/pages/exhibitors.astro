@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+import { STAGE_OPTIONS } from '../components/forms/StageOptions';
+---
+<Base title="Exhibit in the Founder Festival Startup Market" description="Startups with a live product can apply for a stand in the Founder Festival 2027 Startup Market. Package details are being finalised." breadcrumbs={[{ name: 'Founder Festival', href: '/festival/' }, { name: 'Exhibitors' }]} ogImage="/og/festival.png">
+  <PageHero eyebrow="Startup Market 2027" title="Exhibit your product" lede="Show what you've built to attendees, investors and corporate buyers. Stand packages and prices are not yet set — apply now and we'll send details when they are." />
+  <section class="section tight"><div class="container split">
+    <div class="stack">
+      <h2 style="font-size: var(--fs-xl)">Who it's for</h2>
+      <ul><li>Startups with a product customers can use today.</li><li>Teams looking for customers, partners or investors in the region.</li></ul>
+      <div class="notice warn"><strong>Not yet confirmed</strong>Venue, stand sizes, number of zones and prices. The provisional application deadline is 28 February 2027.</div>
+    </div>
+    <div class="form-panel">
+      <Form type="exhibitor" id="exhibit" submitLabel="Apply to exhibit" success="Your exhibitor application has been received.">
+        <div class="form-row two"><Field form="exhibit" name="name" label="Your name" required autocomplete="name" /><Field form="exhibit" name="email" label="Email" type="email" required autocomplete="email" /></div>
+        <div class="form-row two"><Field form="exhibit" name="company" label="Company" required autocomplete="organization" /><Field form="exhibit" name="website" label="Website" type="url" /></div>
+        <Field form="exhibit" name="stage" label="Stage" type="select" required options={STAGE_OPTIONS} />
+        <Field form="exhibit" name="message" label="What would you show?" type="textarea" required minlength={10} />
+      </Form>
+    </div>
+  </div></section>
+</Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { TRACKS, GUIDES } from '../../data/content';
+---
+<Base title="Academy: nine founder learning tracks" description="Practical guides for founders: customer discovery, retention, unit economics, fundraising and more — organised into nine tracks." breadcrumbs={[{ name: 'Academy' }]} ogImage="/og/academy.png">
+  <PageHero eyebrow="Academy" title="Learn the next thing your company needs" lede="Nine tracks from first interviews to international expansion. Each guide is short, practical and linked to a template you can use straight away.">
+    <p class="small muted" style="margin-top: var(--s4)">{GUIDES.length} guides published. Tracks without guides yet are marked “in preparation”.</p>
+  </PageHero>
+  <section class="section tight"><div class="container">
+    <h2 class="visually-hidden">Featured guides</h2>
+    <div class="grid cols-3" style="margin-bottom: var(--s7)">
+      {GUIDES.map((g) => (
+        <article class="card link-card">
+          <span class="xsmall muted">{TRACKS.find((t) => t.slug === g.track)?.title} · {g.minutes} min read</span>
+          <h3><a class="stretched" href={`/academy/guides/${g.slug}/`}>{g.title}</a></h3>
+          <p>{g.summary}</p>
+        </article>
+      ))}
+    </div>
+    <h2>All tracks</h2>
+    <ol class="item-list" style="list-style:none">
+      {TRACKS.map((t) => (
+        <li>
+          <div class="meta-row"><span class="tag">Track {t.number}</span><span>{t.level}</span><span>{t.guides.length ? `${t.guides.length} guide${t.guides.length > 1 ? 's' : ''}` : 'In preparation'}</span></div>
+          <h3><a href={`/academy/${t.slug}/`}>{t.title}</a></h3>
+          <p>{t.description} <strong>Outcome:</strong> {t.outcome}</p>
+        </li>
+      ))}
+    </ol>
+  </div></section>
+</Base>

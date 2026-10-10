@@ -1,0 +1,11 @@
+---
+import AuthShell from '../components/AuthShell.astro';
+import Field from '../components/forms/Field.astro';
+---
+<AuthShell page="reset" title="Choose a new password" heading="Choose a new password" description="Set a new Startup Roof password.">
+  <form class="form" data-auth-form novalidate>
+    <Field form="rs" name="password" label="New password" type="password" required autocomplete="new-password" minlength={10} hint="At least 10 characters." />
+    <Field form="rs" name="confirm" label="Confirm new password" type="password" required autocomplete="new-password" />
+    <button type="submit" class="btn btn-primary btn-lg">Save new password</button>
+  </form>
+</AuthShell>

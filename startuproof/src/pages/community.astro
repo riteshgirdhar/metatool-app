@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+---
+<Base title="Community" description="The Startup Roof member community — founder groups, meetups and peer support. Launching after member verification; here's what's planned." breadcrumbs={[{ name: 'Community' }]}>
+  <PageHero eyebrow="Community" title="A place for founders to help each other" lede="Community is where members talk to each other: peer groups, meetups and questions. It is different from Stories, which is editorial from the Startup Roof team.">
+    <div style="margin-top: var(--s4)"><StatusBadge status="planned" /></div>
+  </PageHero>
+  <section class="section tight"><div class="container split">
+    <div>
+      <h2 style="font-size: var(--fs-xl)">Planned</h2>
+      <ul>
+        <li><strong>Peer groups</strong> of 6–8 founders at a similar stage, meeting monthly.</li>
+        <li><strong>City meetups</strong>, starting in Dubai and Abu Dhabi.</li>
+        <li><strong>Member Q&amp;A</strong> moderated under our <a href="/conduct/">code of conduct</a>.</li>
+      </ul>
+      <p>Community opens to members after directory verification is running, so that you know who you're talking to.</p>
+    </div>
+    <div class="card"><h2 style="font-size: var(--fs-lg); margin:0">Be among the first</h2><p>Create a free account and we'll invite you when the first peer groups form.</p><a class="btn btn-primary" href="/signup/">Join free</a><a class="small" href="/media/">Looking for editorial? Read Stories</a></div>
+  </div></section>
+</Base>

@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+const groups = [
+  { h: 'Account and sign-in', items: [
+    { q: "I didn't receive my verification email", a: '<p>Check spam, then use <strong>Resend verification email</strong> on the <a href="/login/">log-in page</a>. Links expire; request a new one if yours has.</p>' },
+    { q: 'I forgot my password', a: '<p>Use <a href="/forgot/">reset password</a>. For security we show the same message whether or not an account exists.</p>' },
+    { q: 'My reset or verification link says it has expired', a: '<p>Links can be used once and expire after a short time. Request a new one from the same page.</p>' },
+    { q: 'Why can\'t I log in when sign-in is “unavailable”?', a: '<p>We never fall back to storing accounts in your browser. If our identity provider can\'t be reached, sign-in pauses until it can.</p>' },
+  ] },
+  { h: 'Directories and access', items: [
+    { q: 'Why are profiles marked “Demo”?', a: '<p>They illustrate the directory before verified member profiles are published. <a href="/media/why-profiles-are-labelled-demo/">More</a>.</p>' },
+    { q: 'I signed up as an investor but can\'t see restricted information', a: '<p>Investor access needs a separate review. <a href="/investors/#for-investors">Apply for verification</a>.</p>' },
+  ] },
+  { h: 'Forms and applications', items: [
+    { q: 'How do I know my application was received?', a: '<p>You see a reference number on screen only after our server has stored your submission. If you don\'t see one, it wasn\'t sent — your answers stay in the form so you can try again.</p>' },
+  ] },
+];
+---
+<Base title="Help centre" description="Answers about accounts, sign-in, verification, directories and applications on Startup Roof — and how to get more help." breadcrumbs={[{ name: 'Help centre' }]}>
+  <PageHero eyebrow="Help centre" title="How can we help?" lede="Quick answers to common questions. If yours isn't here, send us a message." >
+    <div class="cluster"><a class="btn btn-secondary" href="/contact/">Contact support</a><a class="btn btn-ghost" href="/faq/">General FAQ</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container narrow">
+    {groups.map((g) => <><h2 style="font-size: var(--fs-xl); margin-top: var(--s6)">{g.h}</h2><FaqList items={g.items} /></>)}
+  </div></section>
+</Base>

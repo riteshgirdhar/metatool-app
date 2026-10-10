@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import { TOOLS, TRACKS } from '../../data/content';
+---
+<Base title="Toolkit: free founder templates" description="Free templates: investor pipeline tracker, unit-economics worksheet, 13-week cash flow, data-room checklist, pitch deck outline and more." breadcrumbs={[{ name: 'Toolkit' }]}>
+  <PageHero eyebrow="Toolkit" title="Free templates you can use today" lede="Spreadsheets and documents that open in Excel, Google Sheets or any text editor. No account needed." />
+  <section class="section tight"><div class="container">
+    <div class="table-wrap">
+      <table>
+        <caption class="visually-hidden">Toolkit downloads</caption>
+        <thead><tr><th scope="col">Template</th><th scope="col">Use it for</th><th scope="col">Track</th><th scope="col">Download</th></tr></thead>
+        <tbody>
+          {TOOLS.map((t) => (
+            <tr>
+              <th scope="row" style="background:none"><a href={`/toolkit/${t.slug}/`}>{t.title}</a></th>
+              <td>{t.summary}</td>
+              <td><a href={`/academy/${t.track}/`}>{TRACKS.find((x) => x.slug === t.track)?.title}</a></td>
+              <td><a class="btn btn-secondary" href={t.file} download aria-label={`Download ${t.title} (${t.format})`}><Icon name="download" /> {t.format}</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div></section>
+</Base>

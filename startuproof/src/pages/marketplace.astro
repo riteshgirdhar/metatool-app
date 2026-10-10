@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+---
+<Base title="Marketplace for founder services" description="A marketplace of reviewed service providers for founders: legal, accounting, banking, company setup, HR, marketing and technology. Provider applications are open." breadcrumbs={[{ name: 'Marketplace' }]}>
+  <PageHero eyebrow="Marketplace" title="Trusted services for founders" lede="Legal, finance, company setup, hiring and growth services — reviewed before listing.">
+    <div style="margin-top: var(--s4)"><StatusBadge status="planned" text="No providers listed yet" /></div>
+  </PageHero>
+  <section class="section tight"><div class="container split">
+    <div class="stack">
+      <div class="state"><h3>No providers are listed yet</h3><p>We're reviewing the first provider applications. Listings will show what each provider offers founders, with any member pricing agreed in writing.</p></div>
+      <h2 style="font-size: var(--fs-xl)">How providers are reviewed</h2>
+      <ol><li>Application with services, licences where relevant, and references.</li><li>A call with the Startup Roof team.</li><li>Listing once the profile is agreed. Providers cannot pay to be ranked higher.</li></ol>
+    </div>
+    <div class="form-panel" id="apply">
+      <h2 style="font-size: var(--fs-lg)">Apply as a provider</h2>
+      <Form type="provider" id="provider" submitLabel="Apply to be listed" success="Thanks — your provider application is in review.">
+        <div class="form-row two"><Field form="provider" name="name" label="Name" required autocomplete="name" /><Field form="provider" name="email" label="Work email" type="email" required autocomplete="email" /></div>
+        <Field form="provider" name="company" label="Company" required autocomplete="organization" />
+        <Field form="provider" name="category" label="Category" type="select" required options={[{ value: 'legal', label: 'Legal' }, { value: 'accounting', label: 'Accounting & tax' }, { value: 'banking', label: 'Banking & payments' }, { value: 'company-setup', label: 'Company setup & licensing' }, { value: 'hr', label: 'HR & hiring' }, { value: 'marketing', label: 'Marketing' }, { value: 'technology', label: 'Technology' }, { value: 'other', label: 'Other' }]} />
+        <Field form="provider" name="website" label="Website" type="url" />
+        <Field form="provider" name="message" label="Services for founders" type="textarea" required minlength={10} />
+      </Form>
+    </div>
+  </div></section>
+</Base>

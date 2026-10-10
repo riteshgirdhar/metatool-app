@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import Form from '../components/forms/Form.astro';
+import Field from '../components/forms/Field.astro';
+import { FESTIVAL } from '../config/site';
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const facts: [string, string, 'confirmed' | 'provisional' | 'pending'][] = [
+  ['City', FESTIVAL.city, 'confirmed'],
+  ['Format', `Three days: ${FESTIVAL.structure.join(', ')}`, 'confirmed'],
+  ['Dates', `${fmt(FESTIVAL.dates.start)} – ${fmt(FESTIVAL.dates.end)}`, 'provisional'],
+  ['Capital Night', `${fmt(FESTIVAL.capitalNight.date)} — ${FESTIVAL.capitalNight.note}`, 'provisional'],
+  ['Venue', FESTIVAL.venue ?? 'Not yet announced', 'pending'],
+  ['Zones', FESTIVAL.zones ? String(FESTIVAL.zones) : 'To be confirmed', 'pending'],
+  ['Tickets', FESTIVAL.ticketPrices ? 'See pricing' : 'Not on sale; prices not set', 'pending'],
+  ['Speakers & sponsors', 'None announced', 'pending'],
+];
+---
+<Base title="Founder Festival Dubai 2027" description="Founder Festival is Startup Roof's live gathering for founders, investors and partners in Dubai. See what's confirmed, what's provisional and how to take part." breadcrumbs={[{ name: 'Founder Festival' }]} ogImage="/og/festival.png">
+  <PageHero eyebrow="Founder Festival · Dubai" title="Founder Festival 2027 — planning status" lede="Three days to discover, connect, build, raise and celebrate. Here is exactly what is confirmed so far.">
+    <div class="cluster"><a class="btn btn-primary" href="#interest">Register interest</a><a class="btn btn-secondary" href="/pitch/">Apply to pitch</a><a class="btn btn-ghost" href="/exhibitors/">Exhibit</a><a class="btn btn-ghost" href="/sponsors/">Sponsor</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container split">
+    <div>
+      <h2 style="font-size: var(--fs-xl)">What we know</h2>
+      <div class="table-wrap"><table>
+        <caption class="visually-hidden">Founder Festival planning facts and their status</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">Detail</th><th scope="col">Status</th></tr></thead>
+        <tbody>{facts.map(([k, v, st]) => <tr><th scope="row" style="background:none">{k}</th><td>{v}</td><td><StatusBadge status={st === 'confirmed' ? 'live' : 'pending'} text={st === 'confirmed' ? 'Confirmed' : st === 'provisional' ? 'Provisional' : 'To be confirmed'} /></td></tr>)}</tbody>
+      </table></div>
+      <h2 style="font-size: var(--fs-xl); margin-top: var(--s7)">The three days</h2>
+      <ol class="steps">
+        <li><div><h3>Discover + Connect</h3><p>Meet founders, investors, corporates and programmes from across the region.</p></div></li>
+        <li><div><h3>Build + Raise</h3><p>Workshops, office hours and the Pitch Studio, with investor meetings for shortlisted companies.</p></div></li>
+        <li><div><h3>Scale + Celebrate</h3><p>Market entry, partnerships and recognising what founders have built.</p></div></li>
+      </ol>
+      <p class="small muted">Concept renderings from the previous site are not shown because no venue has been confirmed.</p>
+    </div>
+    <div class="form-panel" id="interest">
+      <h2 style="font-size: var(--fs-lg)">Register interest</h2>
+      <p class="small muted">We'll email you when dates, venue and tickets are confirmed. No payment is taken.</p>
+      <Form type="festival-interest" id="fest-interest" submitLabel="Register interest" success="You're on the Founder Festival update list.">
+        <Field form="fest-interest" name="name" label="Name" required autocomplete="name" />
+        <Field form="fest-interest" name="email" label="Email" type="email" required autocomplete="email" />
+        <Field form="fest-interest" name="role" label="I'd take part as" type="select" required options={[{ value: 'founder', label: 'Founder' }, { value: 'investor', label: 'Investor' }, { value: 'mentor', label: 'Mentor or speaker' }, { value: 'partner', label: 'Partner' }, { value: 'sponsor', label: 'Sponsor' }, { value: 'attendee', label: 'Attendee' }]} />
+        <Field form="fest-interest" name="country" label="Country" autocomplete="country-name" />
+      </Form>
+    </div>
+  </div></section>
+</Base>

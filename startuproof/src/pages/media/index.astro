@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { STORIES } from '../../data/content';
+const fmt = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+<Base title="Stories from Startup Roof" description="Editorial from Startup Roof: how the platform works, editorial standards and planning updates." breadcrumbs={[{ name: 'Stories' }]}>
+  <PageHero eyebrow="Stories" title="From the Startup Roof team" lede="Updates and explanations from us. For startup news from across the region, see Radar; for member discussion, see Community.">
+    <div class="cluster"><a class="btn btn-secondary" href="/radar/">Go to Radar</a><a class="btn btn-ghost" href="/community/">Community</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container narrow">
+    <ul class="item-list">{STORIES.map((s) => <li><span class="xsmall muted">{fmt(s.date)}</span><h2 style="font-size:1.25rem;margin:0"><a href={`/media/${s.slug}/`}>{s.title}</a></h2><p>{s.summary}</p></li>)}</ul>
+  </div></section>
+</Base>

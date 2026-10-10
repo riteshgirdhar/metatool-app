@@ -1,0 +1,29 @@
+---
+/* Founder OS interface preview built in HTML. Data is illustrative and labelled as such. */
+const rows = [
+  { label: 'Product', v: 68 }, { label: 'Traction', v: 54 }, { label: 'Team', v: 72 }, { label: 'Fundraising readiness', v: 46 },
+];
+---
+<figure class="preview" style="margin:0" aria-label="Founder OS interface preview with illustrative data">
+  <div class="preview-bar"><span>Founder OS · Readiness</span><span class="badge demo">Illustrative data</span></div>
+  <div class="preview-body">
+    <div>
+      <div class="meta-row" style="justify-content:space-between"><strong style="color:var(--ink);font-size:var(--fs-sm)">Example Co · Seed</strong><span>Updated weekly</span></div>
+    </div>
+    {rows.map((r) => (
+      <div>
+        <div class="meta-row" style="justify-content:space-between"><span style="color:var(--ink-2)">{r.label}</span><span>{r.v}/100</span></div>
+        <div class="meter" role="img" aria-label={`${r.label}: ${r.v} out of 100`}><span style={`width:${r.v}%`}></span></div>
+      </div>
+    ))}
+    <div style="border-top:1px solid var(--line);padding-top:var(--s3)">
+      <span class="xsmall muted">Next actions</span>
+      <ul style="margin:var(--s2) 0 0;padding-left:1.1rem" class="small">
+        <li>Run 8 more customer interviews (Academy track 1)</li>
+        <li>Add CAC by channel to your model (Toolkit)</li>
+        <li>Shortlist 30 seed investors (Investor pipeline)</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption class="visually-hidden">Preview of the Founder OS readiness view. Scores and actions shown are examples, not real company data.</figcaption>
+</figure>

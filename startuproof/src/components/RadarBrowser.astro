@@ -1,0 +1,68 @@
+---
+import RadarList from './RadarList.astro';
+import { EDITIONS, KINDS, type Edition, type RadarItem } from '../data/radar';
+interface Props { items: RadarItem[]; current: Edition | 'all' }
+const { items, current } = Astro.props;
+const kinds = [...new Set(items.map((i) => i.kind))];
+---
+<nav aria-label="Radar editions" class="chips">
+  <a class="chip" href="/radar/" aria-current={current === 'all' ? 'page' : undefined}>All editions</a>
+  {(Object.keys(EDITIONS) as Edition[]).map((e) => <a class="chip" href={`/radar/${e}/`} aria-current={current === e ? 'page' : undefined}>{EDITIONS[e].label}</a>)}
+</nav>
+<form class="filters" data-radar-filter role="search" aria-label="Filter Radar items">
+  <div class="field">
+    <label for="radar-type">Type</label>
+    <select id="radar-type" class="select" name="type">
+      <option value="">All types</option>
+      <option value="financing">All financing</option>
+      {kinds.map((k) => <option value={k}>{KINDS[k]}</option>)}
+    </select>
+  </div>
+  <div class="field">
+    <label for="radar-q">Keyword</label>
+    <input id="radar-q" class="input" name="q" type="search" placeholder="Company, investor, sector" />
+  </div>
+  <p class="small muted" style="margin:0;flex-basis:100%" aria-live="polite" data-radar-count>{items.length} items</p>
+</form>
+<div data-radar-results>
+  <RadarList items={items} headingLevel="h2" />
+</div>
+<div class="state" data-radar-empty hidden>
+  <h3>No items match these filters</h3>
+  <p>Try another type or keyword, or check a different edition.</p>
+  <a class="btn btn-secondary" href="?">Clear filters</a>
+</div>
+<script>
+  const FIN = ['equity_round', 'undisclosed_investment', 'debt', 'acquisition', 'investment_plan', 'fund_close', 'fund_target', 'secondary'];
+  const form = document.querySelector<HTMLFormElement>('[data-radar-filter]');
+  const rows = Array.from(document.querySelectorAll<HTMLLIElement>('[data-radar-results] li[data-kind]'));
+  const count = document.querySelector('[data-radar-count]');
+  const empty = document.querySelector<HTMLElement>('[data-radar-empty]');
+  const list = document.querySelector<HTMLElement>('[data-radar-results]');
+  function apply(push: boolean) {
+    if (!form) return;
+    const type = (form.elements.namedItem('type') as HTMLSelectElement).value;
+    const q = (form.elements.namedItem('q') as HTMLInputElement).value.trim().toLowerCase();
+    let n = 0;
+    rows.forEach((r) => {
+      const k = r.dataset.kind ?? '';
+      const okType = !type || (type === 'financing' ? FIN.includes(k) : k === type);
+      const okQ = !q || (r.textContent ?? '').toLowerCase().includes(q);
+      r.hidden = !(okType && okQ); if (!r.hidden) n++;
+    });
+    if (count) count.textContent = `${n} item${n === 1 ? '' : 's'}`;
+    if (empty && list) { empty.hidden = n > 0; list.hidden = n === 0; }
+    if (push) {
+      const p = new URLSearchParams(); if (type) p.set('type', type); if (q) p.set('q', q);
+      history.replaceState(null, '', `${location.pathname}${p.size ? `?${p}` : ''}`);
+    }
+  }
+  if (form) {
+    const p = new URLSearchParams(location.search);
+    (form.elements.namedItem('type') as HTMLSelectElement).value = p.get('type') ?? '';
+    (form.elements.namedItem('q') as HTMLInputElement).value = p.get('q') ?? '';
+    form.addEventListener('input', () => apply(true));
+    form.addEventListener('submit', (e) => { e.preventDefault(); apply(true); });
+    apply(false);
+  }
+</script>

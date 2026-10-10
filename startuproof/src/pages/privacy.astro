@@ -1,0 +1,17 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+---
+<LegalPage title="Privacy notice" description="How this Startup Roof preview site collects, stores and uses personal information.">
+  <h2>What this site collects</h2>
+  <ul>
+    <li><strong>Forms</strong> (contact, applications, interest registrations): the details you enter, the time, the page you submitted from, your browser's user-agent, and a one-way hash of your IP address used for rate limiting. Your raw IP address is not stored.</li>
+    <li><strong>Accounts</strong>: your email address, a securely hashed password managed by our identity provider (Supabase Auth), your name, and the role you said you're interested in. We never store passwords in your browser.</li>
+    <li><strong>Saved items</strong>: Radar items you save are stored only in your own browser and are not sent to us.</li>
+  </ul>
+  <h2>Where it is stored</h2>
+  <p>Form submissions are stored in Netlify Blobs, part of our hosting provider. Account data is stored by Supabase. Both providers may process data outside your country.</p>
+  <h2>How it is used</h2>
+  <p>To respond to your request, review applications, operate your account and protect the service from abuse. We do not sell personal information. This site does not use advertising or analytics cookies.</p>
+  <h2>Retention and your rights</h2>
+  <p>Retention periods and the full description of your rights will be set out in the reviewed notice. Meanwhile you can ask us to access or delete your data through the <a href="/contact/">contact form</a>.</p>
+</LegalPage>

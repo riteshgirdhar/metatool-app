@@ -1,0 +1,31 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Icon from '../../../../components/Icon.astro';
+import { SHOWS, type Show } from '../../../../data/content';
+export function getStaticPaths() {
+  return SHOWS.flatMap((s) => s.episodes.map((e) => ({ params: { show: s.slug, episode: e.slug }, props: { s, e } })));
+}
+const { s, e } = Astro.props as { s: Show; e: Show['episodes'][number] };
+const i = s.episodes.findIndex((x) => x.slug === e.slug);
+const prev = s.episodes[i - 1]; const next = s.episodes[i + 1];
+---
+<Base title={`${s.title} E${e.n}: ${e.title}`} description={`Episode ${e.n} of ${s.title} on Startup Roof TV — planned, not yet available.`} noindex breadcrumbs={[{ name: 'TV', href: '/tv/' }, { name: s.title, href: `/tv/shows/${s.slug}/` }, { name: `Episode ${e.n}` }]} ogImage="/og/tv.png">
+  <section class="section tight"><div class="container narrow stack">
+    <div class="player" role="region" aria-label={`Video player: ${s.title} episode ${e.n}`}>
+      <div>
+        <Icon name="tv" class="visually-hidden" />
+        <p style="color:#fff;font-weight:650;font-size:var(--fs-lg);margin-bottom:var(--s2)">This episode is not available yet</p>
+        <p>No video has been published for this episode. There is nothing to play, and nothing has been loaded.</p>
+        <a class="btn btn-secondary" style="background:transparent;color:#fff;border-color:#888" href="/signup/">Get notified when it's released</a>
+      </div>
+    </div>
+    <span class="eyebrow">{s.title} · Episode {e.n} of {s.episodes.length} (planned)</span>
+    <h1 style="font-size: var(--fs-2xl)">E{e.n}: {e.title}</h1>
+    <p class="muted">Captions and a transcript will be published with the episode.</p>
+    <nav class="cluster" aria-label="Episodes">
+      {prev && <a class="btn btn-secondary" href={`/tv/shows/${s.slug}/${prev.slug}/`}>← E{prev.n}</a>}
+      <a class="btn btn-ghost" href={`/tv/shows/${s.slug}/`}>All episodes</a>
+      {next && <a class="btn btn-secondary" href={`/tv/shows/${s.slug}/${next.slug}/`}>E{next.n} →</a>}
+    </nav>
+  </div></section>
+</Base>

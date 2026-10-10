@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureStatus from '../components/FeatureStatus.astro';
+---
+<Base title="About Startup Roof" description="Startup Roof is a year-round ecosystem for founders and the people who back them — tools, directories, news, learning and Founder Festival under one roof." breadcrumbs={[{ name: 'About' }]}>
+  <PageHero eyebrow="About" title="Why Startup Roof exists" lede="Founders in the region spend too much time finding the right people, the right information and the right next step. Startup Roof puts them under one roof — all year, not just at events." />
+  <section class="section tight"><div class="container split">
+    <div class="prose">
+      <h2>Who we serve</h2>
+      <p>Founders and aspiring entrepreneurs first — and the people who help them: investors, angels, VCs and family offices; mentors and operators; accelerators and incubators; corporate innovation teams; professional service providers; universities and government ecosystem partners; sponsors and startup communities.</p>
+      <h2>How we work</h2>
+      <ul>
+        <li><strong>Useful before impressive.</strong> We publish tools and guides founders can use today.</li>
+        <li><strong>Honest status.</strong> Every feature is labelled live, beta, planned or demo — see the table below.</li>
+        <li><strong>Verified, not assumed.</strong> Profiles, investor access and news items are checked before they are trusted.</li>
+      </ul>
+      <h2>Team</h2>
+      <p>Team profiles will be published here with each person's consent and approved photographs.</p>
+    </div>
+    <div class="card"><h2 style="font-size: var(--fs-lg); margin:0">Get in touch</h2><p>Partnerships, press or general questions.</p><a class="btn btn-secondary" href="/contact/">Contact us</a></div>
+  </div></section>
+  <section class="section alt"><div class="container"><h2>What's live today</h2><FeatureStatus /></div></section>
+</Base>

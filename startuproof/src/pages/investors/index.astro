@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import DirectoryFilter from '../../components/DirectoryFilter.astro';
+import MemberSlot from '../../components/MemberSlot.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { INVESTORS, INVESTOR_TYPE, MEMBERS_ONLY_INVESTOR_COUNT, initials } from '../../data/directory';
+const uniq = (a: string[]) => [...new Set(a)].sort();
+---
+<Base title="Investor directory and investor access" description="Find angels, VCs, family offices and corporate investors by stage and sector — and apply for verified investor access to founder profiles." breadcrumbs={[{ name: 'Investors' }]}>
+  <PageHero eyebrow="Directory" title="Investors" lede="Founders: find investors who back your stage and sector. Investors: apply for verified access to founder profiles and restricted information." >
+    <div class="cluster"><a class="btn btn-primary" href="#for-investors">Apply for investor access</a><a class="btn btn-secondary" href="/signup/?role=founder">Join as a founder</a></div>
+  </PageHero>
+  <section class="section tight"><div class="container stack">
+    <DemoNotice kind="profiles" />
+    <DirectoryFilter noun="investors" total={INVESTORS.length} facets={[{ name: 'type', label: 'Type', values: uniq(INVESTORS.map((i) => INVESTOR_TYPE[i.type])) }, { name: 'stage', label: 'Stage', values: uniq(INVESTORS.flatMap((i) => i.stages)) }, { name: 'sector', label: 'Sector', values: uniq(INVESTORS.flatMap((i) => i.sectors)) }]} />
+    <ul class="grid cols-2" data-dir-grid style="list-style:none;padding:0;margin:0">
+      {INVESTORS.map((i) => (
+        <li class="card link-card" data-dir-item data-type={INVESTOR_TYPE[i.type]} data-stage={i.stages.join('|')} data-sector={i.sectors.join('|')}>
+          <div class="cluster" style="justify-content:space-between"><span class="avatar" aria-hidden="true">{initials(i.name)}</span><span class="badge demo">Demo profile</span></div>
+          <h2 style="font-size:1.125rem;margin:0"><a class="stretched" href={`/investors/${i.slug}/`}>{i.name}</a></h2>
+          <p>{i.thesis}</p>
+          <div class="meta-row"><span class="tag">{INVESTOR_TYPE[i.type]}</span><span>{i.stages.join(', ')}</span><span>{i.location}</span></div>
+        </li>
+      ))}
+    </ul>
+    <MemberSlot type="investors" mode="extra-investors" title={`${MEMBERS_ONLY_INVESTOR_COUNT} more investors are visible to members`} text="Some investors choose to be listed for signed-in members only." intent="view-investors" />
+  </div></section>
+  <section class="section alt" id="for-investors" aria-labelledby="inv-access"><div class="container split">
+    <div>
+      <span class="eyebrow">For investors</span>
+      <h2 id="inv-access">How investor verification works</h2>
+      <ol class="steps">
+        <li><div><h3>Create a free account</h3><p>Choosing “investor” at sign-up records your interest only. It does not grant investor access.</p></div></li>
+        <li><div><h3>Submit verification details</h3><p>Your firm or angel activity, a public profile, and evidence of investing.</p></div></li>
+        <li><div><h3>Review</h3><p>We check the information. Until approved, you have the same access as any member.</p></div></li>
+        <li><div><h3>Verified access</h3><p>See information founders restrict to verified investors, and receive introduction requests.</p></div></li>
+      </ol>
+    </div>
+    <div class="form-panel">
+      <h3>Apply for verification</h3>
+      <p class="small muted">You need to be logged in with a verified email. If you're not, we'll take you to log in and bring you back.</p>
+      <Form type="investor-verification" id="inv-verify" submitLabel="Submit for review" success="Your verification request is with our team." note="We use these details only to assess investor access.">
+        <Field form="inv-verify" name="firm" label="Firm" required hint="Or “Independent angel”." />
+        <Field form="inv-verify" name="roleTitle" label="Your role" required />
+        <Field form="inv-verify" name="profileUrl" label="Firm website or professional profile" type="url" required />
+        <Field form="inv-verify" name="ticket" label="Typical cheque size (USD)" type="select" required options={[{ value: '<25k', label: 'Under 25k' }, { value: '25k-100k', label: '25k – 100k' }, { value: '100k-500k', label: '100k – 500k' }, { value: '500k-2m', label: '500k – 2M' }, { value: '>2m', label: 'Over 2M' }]} />
+        <Field form="inv-verify" name="evidence" label="Evidence of investing" type="textarea" required minlength={20} hint="E.g. two portfolio companies and the year you invested. We may contact them." />
+      </Form>
+    </div>
+  </div></section>
+</Base>

@@ -1,0 +1,16 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ShowArt from '../../../components/ShowArt.astro';
+import { SHOWS, TV_CATEGORIES } from '../../../data/content';
+export function getStaticPaths() { return TV_CATEGORIES.map((c) => ({ params: { cat: c.slug }, props: { c } })); }
+const { c } = Astro.props as { c: (typeof TV_CATEGORIES)[number] };
+const shows = SHOWS.filter((s) => s.category === c.slug);
+---
+<Base title={`${c.title} — Startup Roof TV`} description={`${c.summary} Planned Startup Roof TV shows in ${c.title}.`} breadcrumbs={[{ name: 'TV', href: '/tv/' }, { name: c.title }]} ogImage="/og/tv.png">
+  <PageHero eyebrow="Startup Roof TV" title={c.title} lede={c.summary} />
+  <section class="section tight"><div class="container">
+    {shows.length ? <ul class="grid cols-2" style="list-style:none;padding:0">{shows.map((s) => <li class="card link-card"><ShowArt title={s.title} category={s.category} /><h2 style="font-size:1.125rem;margin:0"><a class="stretched" href={`/tv/shows/${s.slug}/`}>{s.title}</a></h2><p>{s.summary}</p></li>)}</ul>
+      : <div class="state"><h3>No shows in this category yet</h3></div>}
+  </div></section>
+</Base>

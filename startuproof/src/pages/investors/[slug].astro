@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import MemberSlot from '../../components/MemberSlot.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { INVESTORS, INVESTOR_TYPE, initials, type InvestorPublic } from '../../data/directory';
+export function getStaticPaths() { return INVESTORS.map((i) => ({ params: { slug: i.slug }, props: { i } })); }
+const { i } = Astro.props as { i: InvestorPublic };
+---
+<Base title={`${i.name} (demo profile)`} description={`${i.name} — ${INVESTOR_TYPE[i.type]} investing at ${i.stages.join(', ')}. Demo profile on Startup Roof.`} noindex breadcrumbs={[{ name: 'Investors', href: '/investors/' }, { name: i.name }]}>
+  <section class="section tight"><div class="container split aside">
+    <div class="stack">
+      <DemoNotice kind="profile" />
+      <div class="cluster"><span class="avatar" aria-hidden="true">{initials(i.name)}</span><div><h1 style="font-size: var(--fs-2xl); margin:0">{i.name}</h1><p class="muted" style="margin:0">{INVESTOR_TYPE[i.type]} · {i.location}</p></div></div>
+      <p class="lede">{i.thesis}</p>
+      <dl class="facts">
+        <div><dt>Stages</dt><dd>{i.stages.join(', ')}</dd></div><div><dt>Sectors</dt><dd>{i.sectors.join(', ')}</dd></div><div><dt>Geographies</dt><dd>{i.geographies.join(', ')}</dd></div>
+      </dl>
+      <MemberSlot type="investors" slug={i.slug} title="Cheque size and portfolio" text="Typical cheque size, follow-on policy and portfolio are visible to signed-in members." intent="view-investor" />
+    </div>
+    <aside class="form-panel">
+      <h2 style="font-size: var(--fs-lg)">Request an introduction</h2>
+      <p class="small muted">For members with a founder profile. Requests to demo profiles are recorded for testing only and are not forwarded.</p>
+      <Form type="intro-request" id={`intro-${i.slug}`} submitLabel="Send request" success="Your introduction request was recorded.">
+        <input type="hidden" name="targetType" value="investor" /><input type="hidden" name="targetSlug" value={i.slug} />
+        <Field form={`intro-${i.slug}`} name="message" label="Your company and why this investor fits" type="textarea" required minlength={20} />
+      </Form>
+    </aside>
+  </div></section>
+</Base>

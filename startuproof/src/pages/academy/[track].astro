@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { TRACKS, GUIDES, TOOLS, type Track } from '../../data/content';
+export function getStaticPaths() { return TRACKS.map((t) => ({ params: { track: t.slug }, props: { t } })); }
+const { t } = Astro.props as { t: Track };
+const guides = GUIDES.filter((g) => g.track === t.slug);
+const tools = TOOLS.filter((x) => x.track === t.slug);
+const idx = TRACKS.findIndex((x) => x.slug === t.slug);
+const next = TRACKS[idx + 1];
+---
+<Base title={`Academy track ${t.number}: ${t.title}`} description={`${t.description} Outcome: ${t.outcome}`} breadcrumbs={[{ name: 'Academy', href: '/academy/' }, { name: t.title }]} ogImage="/og/academy.png">
+  <PageHero eyebrow={`Track ${t.number} · ${t.level}`} title={t.title} lede={t.description}>
+    <p style="margin-top: var(--s4)"><strong>Outcome:</strong> {t.outcome}</p>
+  </PageHero>
+  <section class="section tight"><div class="container split aside">
+    <div>
+      <h2 style="font-size: var(--fs-xl)">Guides</h2>
+      {guides.length ? (
+        <ul class="item-list">{guides.map((g) => <li><h3><a href={`/academy/guides/${g.slug}/`}>{g.title}</a></h3><p>{g.summary}</p><span class="xsmall muted">{g.minutes} min read</span></li>)}</ul>
+      ) : (
+        <div class="state"><h3>Guides for this track are in preparation</h3><p>Join free to be told when they are published.</p><a class="btn btn-secondary" href="/signup/">Join free</a></div>
+      )}
+    </div>
+    <aside class="stack">
+      {tools.length > 0 && <div class="card"><h2 style="font-size: var(--fs-lg); margin:0">Templates for this track</h2><ul class="small" style="margin:0">{tools.map((x) => <li><a href={`/toolkit/${x.slug}/`}>{x.title}</a></li>)}</ul></div>}
+      {next && <a class="card link-card" href={`/academy/${next.slug}/`} style="text-decoration:none;color:inherit"><span class="xsmall muted">Next track</span><strong>{next.number}. {next.title}</strong></a>}
+    </aside>
+  </div></section>
+</Base>

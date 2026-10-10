@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+interface Props { page: string; title: string; heading: string; lede?: string; description: string }
+const { page, title, heading, lede, description } = Astro.props;
+---
+<Base title={title} description={description} noindex>
+  <section class="section tight" data-auth-page={page}>
+    <div class="container" style="max-width: 30rem">
+      <h1 style="font-size: var(--fs-2xl)">{heading}</h1>
+      {lede && <p class="muted">{lede}</p>}
+      <p class="notice" data-intent hidden></p>
+      <div class="notice" data-auth-status tabindex="-1" role="status" aria-live="polite" hidden></div>
+      <div class="form-panel" style="margin-top: var(--s4)"><slot /></div>
+      <slot name="after" />
+    </div>
+  </section>
+  <script>import '../scripts/auth-pages';</script>
+</Base>

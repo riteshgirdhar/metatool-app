@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description} noindex breadcrumbs={[{ name: 'Legal' }, { name: title }]}>
+  <section class="section tight"><div class="container narrow prose">
+    <span class="eyebrow">Legal</span>
+    <h1 style="font-size: var(--fs-2xl)">{title}</h1>
+    <div class="notice warn" role="note"><strong>Draft — pending legal review</strong>This page has not yet been finalised by Startup Roof's legal advisers. It describes how this preview site works today and will be replaced by the reviewed version before the site goes live on startuproof.com.</div>
+    <slot />
+    <p class="small muted" style="margin-top: var(--s7)">Questions? Use the <a href="/contact/">contact form</a> and choose “General”.</p>
+  </div></section>
+</Base>

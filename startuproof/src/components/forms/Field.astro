@@ -1,0 +1,25 @@
+---
+interface Option { value: string; label: string }
+interface Props {
+  form: string; name: string; label: string; type?: 'text' | 'email' | 'url' | 'date' | 'textarea' | 'select' | 'password';
+  required?: boolean; hint?: string; options?: Option[]; autocomplete?: string; minlength?: number; maxlength?: number; placeholder?: string; value?: string;
+}
+const { form, name, label, type = 'text', required = false, hint, options = [], autocomplete, minlength, maxlength, placeholder, value } = Astro.props;
+const id = `${form}-${name}`;
+const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).join(' ');
+---
+<div class="field">
+  <label for={id}>{label}{required && <span class="req" aria-hidden="true"> *</span>}</label>
+  {hint && <span class="hint" id={`${id}-hint`}>{hint}</span>}
+  {type === 'textarea' ? (
+    <textarea class="textarea" id={id} name={name} required={required} minlength={minlength} maxlength={maxlength} aria-describedby={describedBy} placeholder={placeholder}>{value}</textarea>
+  ) : type === 'select' ? (
+    <select class="select" id={id} name={name} required={required} aria-describedby={describedBy}>
+      <option value="">Choose…</option>
+      {options.map((o) => <option value={o.value} selected={o.value === value}>{o.label}</option>)}
+    </select>
+  ) : (
+    <input class="input" id={id} name={name} type={type} required={required} autocomplete={autocomplete} minlength={minlength} maxlength={maxlength} aria-describedby={describedBy} placeholder={placeholder} value={value} />
+  )}
+  <span class="field-error" id={`${id}-error`} data-error-for={name} hidden></span>
+</div>

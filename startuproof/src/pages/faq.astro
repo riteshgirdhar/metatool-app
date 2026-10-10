@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+const items = [
+  { q: 'What is Startup Roof?', a: '<p>A year-round ecosystem for founders: Founder OS, directories of startups, investors and mentors, Radar startup news, Academy, Toolkit, and Founder Festival.</p>' },
+  { q: 'How much does it cost?', a: '<p>Membership is free. Paid plans are planned; prices are not set and no payments are taken. See <a href="/pricing/">pricing</a>.</p>' },
+  { q: 'Which countries do you cover?', a: '<p>We start with the UAE and the wider GCC, with Radar editions for Saudi Arabia, Qatar, Egypt and India and a global edition. Coverage is selective and editor-reviewed.</p>' },
+  { q: 'Can I trust Radar amounts and dates?', a: '<p>Amounts are shown as stated by the source, with what they represent (round, loan, plan, fund target). We show when we collected an item and only show a publication date once checked.</p>' },
+  { q: 'Who can see my company information?', a: '<p>You choose: public, members, or verified investors only. Financial information defaults to verified investors.</p>' },
+  { q: 'How do I become a mentor?', a: '<p><a href="/mentors/#become">Apply here</a>. We review applications before publishing a profile.</p>' },
+  { q: 'Is Startup Roof an investment platform?', a: '<p>No. We do not arrange or recommend investments. See the <a href="/investment-disclaimer/">investment disclaimer</a>.</p>' },
+];
+const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a.replace(/<[^>]+>/g, '') } })) };
+---
+<Base title="Frequently asked questions" description="Answers about Startup Roof membership, pricing, coverage, Radar, privacy of company information and mentoring." breadcrumbs={[{ name: 'FAQ' }]} jsonLd={ld}>
+  <PageHero eyebrow="FAQ" title="Frequently asked questions" />
+  <section class="section tight"><div class="container narrow"><FaqList items={items} /><p style="margin-top: var(--s5)">Need account help? Visit the <a href="/support/">Help centre</a>.</p></div></section>
+</Base>

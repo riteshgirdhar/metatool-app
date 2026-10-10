@@ -1,0 +1,17 @@
+---
+import { FEATURES } from '../config/site';
+import StatusBadge from './StatusBadge.astro';
+interface Props { keys?: string[] }
+const keys = Astro.props.keys ?? Object.keys(FEATURES);
+---
+<div class="table-wrap">
+  <table>
+    <caption class="visually-hidden">Status of Startup Roof features</caption>
+    <thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">What that means today</th></tr></thead>
+    <tbody>
+      {keys.map((k) => (
+        <tr><th scope="row" style="background:none">{FEATURES[k].label}</th><td><StatusBadge status={FEATURES[k].status} /></td><td>{FEATURES[k].note}</td></tr>
+      ))}
+    </tbody>
+  </table>
+</div>

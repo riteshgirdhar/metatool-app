@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import MemberSlot from '../../components/MemberSlot.astro';
+import Form from '../../components/forms/Form.astro';
+import Field from '../../components/forms/Field.astro';
+import { MENTORS, initials, type MentorPublic } from '../../data/directory';
+export function getStaticPaths() { return MENTORS.map((m) => ({ params: { slug: m.slug }, props: { m } })); }
+const { m } = Astro.props as { m: MentorPublic };
+---
+<Base title={`${m.name} (demo profile)`} description={`${m.name}, ${m.title}. Mentor expertise: ${m.expertise.join(', ')}. Demo profile on Startup Roof.`} noindex breadcrumbs={[{ name: 'Mentors', href: '/mentors/' }, { name: m.name }]}>
+  <section class="section tight"><div class="container split aside">
+    <div class="stack">
+      <DemoNotice kind="profile" />
+      <div class="cluster"><span class="avatar" aria-hidden="true">{initials(m.name)}</span><div><h1 style="font-size: var(--fs-2xl); margin:0">{m.name}</h1><p class="muted" style="margin:0">{m.title}, {m.company} · {m.location}</p></div></div>
+      <p class="lede">{m.bio}</p>
+      <dl class="facts"><div><dt>Expertise</dt><dd>{m.expertise.join(', ')}</dd></div><div><dt>Sectors</dt><dd>{m.sectors.join(', ')}</dd></div><div><dt>Verification</dt><dd>Not verified (demo)</dd></div></dl>
+      <MemberSlot type="mentors" slug={m.slug} title="Availability" text="Office-hour availability is visible to signed-in members." intent="view-mentor" />
+    </div>
+    <aside class="form-panel">
+      <h2 style="font-size: var(--fs-lg)">Request office hours</h2>
+      <p class="small muted">Requests to demo profiles are recorded for testing only and are not forwarded.</p>
+      <Form type="intro-request" id={`mentor-${m.slug}`} submitLabel="Request office hours" success="Your office-hours request was recorded.">
+        <input type="hidden" name="targetType" value="mentor" /><input type="hidden" name="targetSlug" value={m.slug} />
+        <Field form={`mentor-${m.slug}`} name="message" label="What do you want help with?" type="textarea" required minlength={20} />
+      </Form>
+    </aside>
+  </div></section>
+</Base>
