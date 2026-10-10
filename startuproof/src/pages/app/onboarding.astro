@@ -5,12 +5,13 @@ import { STAGE_OPTIONS } from '../../components/forms/StageOptions';
 ---
 <Base title="Complete your profile" description="Startup Roof onboarding." noindex>
   <section class="section tight" data-app="onboarding"><div class="container" style="max-width: 38rem">
+    <h1 class="visually-hidden">Complete your profile</h1>
     <div data-app-loading class="skeleton" style="height:12rem" aria-busy="true"></div>
     <div data-app-unavailable hidden class="notice warn"><strong>Onboarding is temporarily unavailable.</strong> Sign-in is not available on this preview right now.</div>
     <div data-app-error hidden class="notice danger"><strong>Something went wrong.</strong> Refresh or <a href="/login/">log in again</a>.</div>
     <div data-app-ready hidden class="stack">
       <span class="eyebrow">Step 2 of 2</span>
-      <h1 style="font-size: var(--fs-2xl)">Tell us a little more</h1>
+      <h2 style="font-size: var(--fs-2xl)">Tell us a little more</h2>
       <p class="muted">These answers shape your Founder OS view and what we suggest. You can change them later.</p>
       <div class="notice" data-onb-status tabindex="-1" role="status" hidden></div>
       <form class="form form-panel" data-onboarding-form novalidate>

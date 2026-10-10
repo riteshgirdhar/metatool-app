@@ -14,7 +14,7 @@ test.describe('axe WCAG 2.2 AA (automated subset)', () => {
       results[name] = { violations: r.violations.map((v) => ({ id: v.id, impact: v.impact ?? null, nodes: v.nodes.length })) };
       mkdirSync('reports/axe', { recursive: true });
       writeFileSync(`reports/axe/${name}.json`, JSON.stringify(results[name], null, 2));
-      const serious = r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+      const serious = r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical' || v.impact === 'moderate');
       expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(', ')}`)).toEqual([]);
     });
   }

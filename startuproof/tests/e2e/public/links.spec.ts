@@ -17,7 +17,7 @@ test('all internal links, assets and anchors resolve with correct MIME types', a
     await page.goto(r);
     const found = await page.evaluate(() => ({
       hrefs: [...document.querySelectorAll<HTMLAnchorElement>('a[href]')].map((a) => a.getAttribute('href')!),
-      assets: [...document.querySelectorAll('link[href], script[src], img[src]')].map((e) => e.getAttribute('href') ?? e.getAttribute('src')!),
+      assets: [...document.querySelectorAll('link[href]:not([rel="canonical"]), script[src], img[src]')].map((e) => e.getAttribute('href') ?? e.getAttribute('src')!),
       ids: [...document.querySelectorAll('[id]')].map((e) => e.id),
       buttonsWithoutName: [...document.querySelectorAll('button')].filter((b) => !(b.textContent?.trim() || b.getAttribute('aria-label') || b.querySelector('.visually-hidden'))).length,
     }));

@@ -3,11 +3,12 @@ import Base from '../../layouts/Base.astro';
 ---
 <Base title="Your account" description="Your Startup Roof member area." noindex>
   <section class="section tight" data-app="home"><div class="container">
+    <h1 class="visually-hidden">Your account</h1>
     <div data-app-loading class="stack" aria-busy="true"><span class="visually-hidden">Loading your account…</span><div class="skeleton" style="height:2.5rem;max-width:20rem"></div><div class="skeleton" style="height:8rem"></div></div>
     <div data-app-unavailable hidden class="notice warn"><strong>Your account is temporarily unavailable.</strong> Sign-in is not available on this preview right now. <a href="/contact/">Contact us</a> if you need help.</div>
     <div data-app-error hidden class="notice danger"><strong>Something went wrong loading your account.</strong> Refresh the page or <a href="/login/">log in again</a>.</div>
     <div data-app-ready hidden class="stack">
-      <div class="cluster" style="justify-content:space-between"><h1 style="font-size: var(--fs-2xl); margin:0">Welcome, <span data-name></span></h1><button type="button" class="btn btn-secondary" data-logout>Log out</button></div>
+      <div class="cluster" style="justify-content:space-between"><p style="font-size: var(--fs-2xl); font-weight:700; margin:0; letter-spacing:-0.015em">Welcome, <span data-name></span></p><button type="button" class="btn btn-secondary" data-logout>Log out</button></div>
       <div class="notice" data-onboarding-todo hidden><strong>Finish setting up</strong> Two minutes of questions unlock your readiness view. <a href="/app/onboarding/">Complete your profile</a>.</div>
       <div class="grid cols-3">
         <section class="card" aria-labelledby="acc-h"><h2 id="acc-h" style="font-size: var(--fs-lg); margin:0">Account</h2>

@@ -239,7 +239,7 @@ body.drawer-open { overflow: hidden; }
 
 /* Empty / loading / error states */
 .state { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: var(--s6) var(--s5); text-align: center; color: var(--ink-2); background: var(--surface); }
-.state h3 { font-size: var(--fs-base); margin-bottom: var(--s2); color: var(--ink); }
+.state h2, .state h3 { font-size: var(--fs-base); margin-bottom: var(--s2); color: var(--ink); }
 .state p { margin-bottom: var(--s4); }
 .skeleton { background: linear-gradient(90deg, var(--surface-2), var(--surface-3), var(--surface-2)); background-size: 200% 100%; animation: shimmer 1.4s infinite linear; border-radius: var(--radius-sm); min-height: 1rem; }
 @keyframes shimmer { to { background-position: -200% 0; } }

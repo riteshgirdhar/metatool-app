@@ -1,9 +1,3 @@
 {
-  "violations": [
-    {
-      "id": "page-has-heading-one",
-      "impact": "moderate",
-      "nodes": 1
-    }
-  ]
+  "violations": []
 }
