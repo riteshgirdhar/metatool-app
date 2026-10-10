@@ -102,9 +102,14 @@ async function init() {
   if (page === 'login') {
     const form = document.querySelector<HTMLFormElement>('form[data-auth-form]')!;
     const sb = await getClient();
-    const { data } = await sb.auth.getSession();
-    if (data.session) { location.replace(safeNext(params.get('next'))); return; }
-    if (params.get('reason') === 'expired') say('info', 'Your session expired. Please log in again.');
+    if (params.get('reason') === 'expired') {
+      // The server rejected the stored session; discard it locally so we don't bounce straight back.
+      await sb.auth.signOut({ scope: 'local' }).catch(() => null);
+      say('info', 'Your session expired. Please log in again.');
+    } else {
+      const { data } = await sb.auth.getSession();
+      if (data.session) { location.replace(safeNext(params.get('next'))); return; }
+    }
     if (params.get('reason') === 'logged-out') say('ok', 'You have been logged out.');
     wireResend(() => (form.elements.namedItem('email') as HTMLInputElement).value.trim());
     form.addEventListener('submit', async (e) => {

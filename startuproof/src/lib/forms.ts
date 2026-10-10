@@ -5,9 +5,9 @@ import { z } from 'zod';
  * for fast feedback only. Keep field names in sync with src/components/forms/*.astro.
  */
 const name = z.string().trim().min(2, 'Enter your name').max(120);
-const email = z.string().trim().toLowerCase().email('Enter a valid email address').max(200);
+const email = z.string().trim().toLowerCase().max(200).pipe(z.email('Enter a valid email address'));
 const optionalText = (max: number) => z.string().trim().max(max).optional().or(z.literal('').transform(() => undefined));
-const optionalUrl = z.string().trim().max(500).url('Enter a full URL starting with https://').optional().or(z.literal('').transform(() => undefined));
+const optionalUrl = z.string().trim().max(500).pipe(z.url('Enter a full URL starting with https://')).optional().or(z.literal('').transform(() => undefined));
 const message = (min = 10, max = 4000) => z.string().trim().min(min, `Please write at least ${min} characters`).max(max);
 const stage = z.enum(['idea', 'pre-seed', 'seed', 'series-a', 'series-b-plus'], { message: 'Choose a stage' });
 
@@ -31,19 +31,19 @@ export const FORM_SCHEMAS = {
   provider: z.object({ name, email, company: z.string().trim().min(2, 'Enter your company').max(160),
     category: z.enum(['legal', 'accounting', 'banking', 'company-setup', 'hr', 'marketing', 'technology', 'other'], { message: 'Choose a category' }),
     website: optionalUrl, message: message(10, 2000) }),
-  'mentor-application': z.object({ name, email, profileUrl: z.string().trim().url('Enter your LinkedIn or website URL').max(500),
+  'mentor-application': z.object({ name, email, profileUrl: z.string().trim().max(500).pipe(z.url('Enter your LinkedIn or website URL')),
     expertise: z.string().trim().min(3, 'List at least one area').max(300), availability: z.enum(['weekly', 'fortnightly', 'monthly', 'ad-hoc'], { message: 'Choose your availability' }),
     message: message(20, 2000) }),
-  'radar-submission': z.object({ name, email, url: z.string().trim().url('Enter the full source URL').max(500),
+  'radar-submission': z.object({ name, email, url: z.string().trim().max(500).pipe(z.url('Enter the full source URL')),
     kind: z.enum(['funding', 'fund', 'programme', 'event', 'correction', 'other'], { message: 'Choose a type' }), note: message(10, 2000) }),
   'opportunity-submission': z.object({ name, email, organiser: z.string().trim().min(2).max(160), title: z.string().trim().min(4).max(200),
-    url: z.string().trim().url('Enter the full application URL').max(500),
+    url: z.string().trim().max(500).pipe(z.url('Enter the full application URL')),
     deadline: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use the date picker').optional().or(z.literal('').transform(() => undefined)),
     deadlineTz: optionalText(60), note: optionalText(2000) }),
   // Authenticated-only forms (server verifies the session; name/email come from the account, not the form)
   'intro-request': z.object({ targetType: z.enum(['startup', 'investor', 'mentor']), targetSlug: z.string().regex(/^[a-z0-9-]{2,80}$/), message: message(20, 1500) }),
   'investor-verification': z.object({ firm: z.string().trim().min(2, 'Enter your firm or “Independent angel”').max(160),
-    roleTitle: z.string().trim().min(2).max(120), profileUrl: z.string().trim().url('Enter a profile or firm URL').max(500),
+    roleTitle: z.string().trim().min(2).max(120), profileUrl: z.string().trim().max(500).pipe(z.url('Enter a profile or firm URL')),
     ticket: z.enum(['<25k', '25k-100k', '100k-500k', '500k-2m', '>2m'], { message: 'Choose a typical cheque size' }), evidence: message(20, 2000) }),
 } as const;
 

@@ -12,7 +12,7 @@ export const SITE = {
   description:
     'Startup Roof is a year-round ecosystem for founders, investors, mentors and partners: Founder OS, directories, Radar startup news, Academy, Toolkit and Founder Festival.',
   /** The replacement stays noindex until the domain migration is approved. Flip via env SITE_INDEXABLE=true. */
-  indexable: import.meta.env.SITE_INDEXABLE === 'true',
+  indexable: import.meta.env?.SITE_INDEXABLE === 'true',
   /** Canonical origin used for canonical/OG URLs. Keep startuproof.com so canonicals survive migration. */
   canonicalOrigin: 'https://startuproof.com',
   locale: 'en_GB',

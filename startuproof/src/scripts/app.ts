@@ -13,7 +13,10 @@ function show(sel: string, on = true) { const e = $(sel); if (e) e.hidden = !on;
 async function api(path: string, token: string, init: RequestInit = {}) {
   const res = await fetch(path, { ...init, headers: { ...(init.headers ?? {}), authorization: `Bearer ${token}`, 'content-type': 'application/json' } });
   const body = await res.json().catch(() => ({}));
-  if (res.status === 401) { location.assign(`${loginUrl(location.pathname)}&reason=expired`); throw new Error('expired'); }
+  if (res.status === 401) {
+    await (await getClient()).auth.signOut({ scope: 'local' }).catch(() => null);
+    location.assign(`${loginUrl(location.pathname)}&reason=expired`); throw new Error('expired');
+  }
   return { ok: res.ok, status: res.status, body };
 }
 
@@ -32,6 +35,9 @@ async function main() {
     location.assign('/login/?reason=logged-out');
   });
 
+  // Referral attribution happens once, server-side, before onboarding can qualify it.
+  if (meta.ref_code) await api('/api/referrals?action=attribute', session.access_token, { method: 'POST', body: JSON.stringify({ code: meta.ref_code }) }).catch(() => null);
+
   if (view === 'home') {
     text('[data-name]', meta.full_name ?? user.email ?? 'there');
     text('[data-email]', user.email ?? '');
@@ -41,8 +47,6 @@ async function main() {
     const me = await api('/api/me', session.access_token).catch(() => null);
     if (me?.ok) text('[data-investor-status]', me.body.user.investorVerified ? 'Verified investor' : meta.requested_role === 'investor' ? 'Not yet verified — apply below' : 'Not applicable');
     else text('[data-investor-status]', me?.body?.message ?? 'Unavailable right now');
-    // Referral attribution (once) and summary.
-    if (meta.ref_code) await api('/api/referrals?action=attribute', session.access_token, { method: 'POST', body: JSON.stringify({ code: meta.ref_code }) }).catch(() => null);
     const ref = await api('/api/referrals?action=summary', session.access_token).catch(() => null);
     if (ref?.ok) {
       const link = `${location.origin}/signup/?ref=${ref.body.code}`;

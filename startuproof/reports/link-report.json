@@ -1,0 +1,1232 @@
+{
+  "checkedAt": "2026-10-10T17:45:03.994Z",
+  "pages": 132,
+  "internalTargets": 325,
+  "problems": [],
+  "external": [
+    {
+      "href": "https://startuproof.com/",
+      "foundOn": [
+        "/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/about/",
+      "foundOn": [
+        "/about/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/",
+      "foundOn": [
+        "/academy/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/dubai-gcc-market-entry/",
+      "foundOn": [
+        "/academy/dubai-gcc-market-entry/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/finance-unit-economics/",
+      "foundOn": [
+        "/academy/finance-unit-economics/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/fundraising-readiness/",
+      "foundOn": [
+        "/academy/fundraising-readiness/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/go-to-market/",
+      "foundOn": [
+        "/academy/go-to-market/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/guides/customer-discovery-interviews/",
+      "foundOn": [
+        "/academy/guides/customer-discovery-interviews/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/guides/investor-pipeline/",
+      "foundOn": [
+        "/academy/guides/investor-pipeline/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/guides/investor-updates/",
+      "foundOn": [
+        "/academy/guides/investor-updates/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/guides/retention-baseline/",
+      "foundOn": [
+        "/academy/guides/retention-baseline/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/guides/unit-economics-basics/",
+      "foundOn": [
+        "/academy/guides/unit-economics-basics/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/hiring-leadership/",
+      "foundOn": [
+        "/academy/hiring-leadership/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/idea-to-validation/",
+      "foundOn": [
+        "/academy/idea-to-validation/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/mvp-to-pmf/",
+      "foundOn": [
+        "/academy/mvp-to-pmf/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/sales/",
+      "foundOn": [
+        "/academy/sales/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/academy/scaling-internationally/",
+      "foundOn": [
+        "/academy/scaling-internationally/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/accelerator/",
+      "foundOn": [
+        "/accelerator/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/acceptable-use/",
+      "foundOn": [
+        "/acceptable-use/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/app/",
+      "foundOn": [
+        "/app/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/app/onboarding/",
+      "foundOn": [
+        "/app/onboarding/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/auth/callback/",
+      "foundOn": [
+        "/auth/callback/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/community/",
+      "foundOn": [
+        "/community/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/conduct/",
+      "foundOn": [
+        "/conduct/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/contact/",
+      "foundOn": [
+        "/contact/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/cookie/",
+      "foundOn": [
+        "/cookie/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/exhibitors/",
+      "foundOn": [
+        "/exhibitors/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/faq/",
+      "foundOn": [
+        "/faq/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/festival/",
+      "foundOn": [
+        "/festival/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/forgot/",
+      "foundOn": [
+        "/forgot/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/founder-os/",
+      "foundOn": [
+        "/founder-os/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/incubator/",
+      "foundOn": [
+        "/incubator/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investment-disclaimer/",
+      "foundOn": [
+        "/investment-disclaimer/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investors/",
+      "foundOn": [
+        "/investors/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investors/gulf-horizon-ventures/",
+      "foundOn": [
+        "/investors/gulf-horizon-ventures/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investors/meridian-growth-capital/",
+      "foundOn": [
+        "/investors/meridian-growth-capital/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investors/palm-street-capital/",
+      "foundOn": [
+        "/investors/palm-street-capital/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/investors/riyadh-seed-partners/",
+      "foundOn": [
+        "/investors/riyadh-seed-partners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/login/",
+      "foundOn": [
+        "/login/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/marketplace/",
+      "foundOn": [
+        "/marketplace/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/media/",
+      "foundOn": [
+        "/media/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/media/founder-festival-2027-planning-update/",
+      "foundOn": [
+        "/media/founder-festival-2027-planning-update/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/media/radar-editorial-standards/",
+      "foundOn": [
+        "/media/radar-editorial-standards/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/media/why-profiles-are-labelled-demo/",
+      "foundOn": [
+        "/media/why-profiles-are-labelled-demo/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/",
+      "foundOn": [
+        "/mentors/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/arjun-mehta/",
+      "foundOn": [
+        "/mentors/arjun-mehta/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/daniel-osei/",
+      "foundOn": [
+        "/mentors/daniel-osei/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/layla-haddad/",
+      "foundOn": [
+        "/mentors/layla-haddad/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/noura-al-mansoori/",
+      "foundOn": [
+        "/mentors/noura-al-mansoori/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/omar-farouk/",
+      "foundOn": [
+        "/mentors/omar-farouk/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/mentors/priya-nair/",
+      "foundOn": [
+        "/mentors/priya-nair/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/opportunities/",
+      "foundOn": [
+        "/opportunities/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/opportunities/founder-festival-pitch-studio-2027/",
+      "foundOn": [
+        "/opportunities/founder-festival-pitch-studio-2027/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/opportunities/founder-festival-startup-market-2027/",
+      "foundOn": [
+        "/opportunities/founder-festival-startup-market-2027/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/partners/",
+      "foundOn": [
+        "/partners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/pitch/",
+      "foundOn": [
+        "/pitch/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/pricing/",
+      "foundOn": [
+        "/pricing/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/privacy/",
+      "foundOn": [
+        "/privacy/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/",
+      "foundOn": [
+        "/radar/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/egypt/",
+      "foundOn": [
+        "/radar/egypt/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/global/",
+      "foundOn": [
+        "/radar/global/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/india/",
+      "foundOn": [
+        "/radar/india/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/ai-abu-dhabi-2026-brings-150-ai-startups-uae-capital",
+      "foundOn": [
+        "/radar/item/ai-everything-abu-dhabi-2026-startups/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/ai-everything-abu-dhabi-2026-startups/",
+      "foundOn": [
+        "/radar/item/ai-everything-abu-dhabi-2026-startups/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/ai-metric-founders-track-cost-correction",
+      "foundOn": [
+        "/radar/item/ai-metric-cost-of-correction/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/ai-metric-cost-of-correction/",
+      "foundOn": [
+        "/radar/item/ai-metric-cost-of-correction/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/qatar-aligator-raises-1-2-million-seed-round",
+      "foundOn": [
+        "/radar/item/aligator-1-2m-seed-qatar/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/aligator-1-2m-seed-qatar/",
+      "foundOn": [
+        "/radar/item/aligator-1-2m-seed-qatar/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/%C3%AFza-parent-amaani-raises-5-million-series-a-gcc-expansion",
+      "foundOn": [
+        "/radar/item/amaani-aiza-5m-series-a/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/amaani-aiza-5m-series-a/",
+      "foundOn": [
+        "/radar/item/amaani-aiza-5m-series-a/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/beltone-amtaar-plan-38-million-multi-issuance-real-estate-fund",
+      "foundOn": [
+        "/radar/item/beltone-amtaar-38m-real-estate-fund/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/beltone-amtaar-38m-real-estate-fund/",
+      "foundOn": [
+        "/radar/item/beltone-amtaar-38m-real-estate-fund/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/cofe-tech-receives-new-backing-phoenix-venture-partners",
+      "foundOn": [
+        "/radar/item/cofe-tech-phoenix-venture-partners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/cofe-tech-phoenix-venture-partners/",
+      "foundOn": [
+        "/radar/item/cofe-tech-phoenix-venture-partners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/saudi-ai-startup-echelon-secures-backing-east40-raed-ventures-avra",
+      "foundOn": [
+        "/radar/item/echelon-ai-east40-raed-avra/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/echelon-ai-east40-raed-avra/",
+      "foundOn": [
+        "/radar/item/echelon-ai-east40-raed-avra/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/efg-holding-secures-40-million-ebrd-loan-expand-msme-financing-egypt",
+      "foundOn": [
+        "/radar/item/efg-holding-40m-ebrd-loan-msme/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/efg-holding-40m-ebrd-loan-msme/",
+      "foundOn": [
+        "/radar/item/efg-holding-40m-ebrd-loan-msme/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/endeavor-catalyst-raises-320-million-startups-silicon-valley",
+      "foundOn": [
+        "/radar/item/endeavor-catalyst-fund-v-320m/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/endeavor-catalyst-fund-v-320m/",
+      "foundOn": [
+        "/radar/item/endeavor-catalyst-fund-v-320m/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/saudi-fintech-erad-raises-22-million-series-led-mevp",
+      "foundOn": [
+        "/radar/item/erad-22m-series-a-mevp/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/erad-22m-series-a-mevp/",
+      "foundOn": [
+        "/radar/item/erad-22m-series-a-mevp/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/huspy-enters-italy-integra-finance-acquisition-86-million-investment-plan",
+      "foundOn": [
+        "/radar/item/huspy-acquires-integra-finance-italy/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/huspy-acquires-integra-finance-italy/",
+      "foundOn": [
+        "/radar/item/huspy-acquires-integra-finance-italy/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://inc42.com/buzz/from-dailyobjects-to-stockgro-indian-startups-raised-about-123-mn-this-week/",
+      "foundOn": [
+        "/radar/item/india-startup-funding-week-oct-5-2026/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/india-startup-funding-week-oct-5-2026/",
+      "foundOn": [
+        "/radar/item/india-startup-funding-week-oct-5-2026/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/shorooq-presight-join-maven-robotics-100-million-series-a",
+      "foundOn": [
+        "/radar/item/maven-robotics-100m-series-a-shorooq-presight/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/maven-robotics-100m-series-a-shorooq-presight/",
+      "foundOn": [
+        "/radar/item/maven-robotics-100m-series-a-shorooq-presight/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/mena-open-finance-opportunity-age-ai",
+      "foundOn": [
+        "/radar/item/mena-open-finance-opportunity-ai/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/mena-open-finance-opportunity-ai/",
+      "foundOn": [
+        "/radar/item/mena-open-finance-opportunity-ai/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/mena-startup-funding-surges-1-1-billion-september-2026",
+      "foundOn": [
+        "/radar/item/mena-startup-funding-september-2026/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/mena-startup-funding-september-2026/",
+      "foundOn": [
+        "/radar/item/mena-startup-funding-september-2026/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/nvidia-riseup-host-cairo-reception-egypt-ai-ecosystem",
+      "foundOn": [
+        "/radar/item/nvidia-riseup-cairo-ai-reception/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/nvidia-riseup-cairo-ai-reception/",
+      "foundOn": [
+        "/radar/item/nvidia-riseup-cairo-ai-reception/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://inc42.com/buzz/peak-xv-sells-awfis-shares-via-%e2%82%b930-cr-bulk-deal/",
+      "foundOn": [
+        "/radar/item/peak-xv-awfis-bulk-deal/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/peak-xv-awfis-bulk-deal/",
+      "foundOn": [
+        "/radar/item/peak-xv-awfis-bulk-deal/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/pinnacle-increases-stake-saudi-hospitality-startup-gathern",
+      "foundOn": [
+        "/radar/item/pinnacle-increases-stake-gathern/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/pinnacle-increases-stake-gathern/",
+      "foundOn": [
+        "/radar/item/pinnacle-increases-stake-gathern/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/saudi-project-suppliers-raises-1-million-pre-seed",
+      "foundOn": [
+        "/radar/item/project-suppliers-1m-pre-seed/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/project-suppliers-1m-pre-seed/",
+      "foundOn": [
+        "/radar/item/project-suppliers-1m-pre-seed/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/09/rela-lands-strategic-investment-scale-workforce-housing-saudi-arabia",
+      "foundOn": [
+        "/radar/item/rela-strategic-investment-al-rajhi/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/rela-strategic-investment-al-rajhi/",
+      "foundOn": [
+        "/radar/item/rela-strategic-investment-al-rajhi/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://wamda.com/2026/10/tie-women-mena-crowns-regional-winners-ahead-gitex-global-final",
+      "foundOn": [
+        "/radar/item/tie-women-mena-2026-regional-winners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/item/tie-women-mena-2026-regional-winners/",
+      "foundOn": [
+        "/radar/item/tie-women-mena-2026-regional-winners/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/qatar/",
+      "foundOn": [
+        "/radar/qatar/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/saudi/",
+      "foundOn": [
+        "/radar/saudi/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/submit/",
+      "foundOn": [
+        "/radar/submit/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/radar/uae/",
+      "foundOn": [
+        "/radar/uae/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/referrals/",
+      "foundOn": [
+        "/referrals/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/reset/",
+      "foundOn": [
+        "/reset/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/search/",
+      "foundOn": [
+        "/search/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/signup/",
+      "foundOn": [
+        "/signup/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/sponsors/",
+      "foundOn": [
+        "/sponsors/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/",
+      "foundOn": [
+        "/startups/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/dune-robotics/",
+      "foundOn": [
+        "/startups/dune-robotics/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/falcon-stack/",
+      "foundOn": [
+        "/startups/falcon-stack/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/kahwa-club/",
+      "foundOn": [
+        "/startups/kahwa-club/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/majlis-learn/",
+      "foundOn": [
+        "/startups/majlis-learn/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/nimbus-ledger/",
+      "foundOn": [
+        "/startups/nimbus-ledger/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/portside/",
+      "foundOn": [
+        "/startups/portside/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/saffron-health/",
+      "foundOn": [
+        "/startups/saffron-health/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/startups/verdant-grid/",
+      "foundOn": [
+        "/startups/verdant-grid/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/support/",
+      "foundOn": [
+        "/support/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/terms/",
+      "foundOn": [
+        "/terms/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/",
+      "foundOn": [
+        "/toolkit/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/customer-interview-script/",
+      "foundOn": [
+        "/toolkit/customer-interview-script/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/data-room-checklist/",
+      "foundOn": [
+        "/toolkit/data-room-checklist/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/hiring-scorecard/",
+      "foundOn": [
+        "/toolkit/hiring-scorecard/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/investor-pipeline-tracker/",
+      "foundOn": [
+        "/toolkit/investor-pipeline-tracker/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/investor-update-template/",
+      "foundOn": [
+        "/toolkit/investor-update-template/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/pitch-deck-outline/",
+      "foundOn": [
+        "/toolkit/pitch-deck-outline/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/thirteen-week-cash-flow/",
+      "foundOn": [
+        "/toolkit/thirteen-week-cash-flow/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/toolkit/unit-economics-worksheet/",
+      "foundOn": [
+        "/toolkit/unit-economics-worksheet/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/",
+      "foundOn": [
+        "/tv/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/category/build/",
+      "foundOn": [
+        "/tv/category/build/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/category/ecosystem/",
+      "foundOn": [
+        "/tv/category/ecosystem/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/category/raise/",
+      "foundOn": [
+        "/tv/category/raise/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/category/scale/",
+      "foundOn": [
+        "/tv/category/scale/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/learning/",
+      "foundOn": [
+        "/tv/learning/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/live/",
+      "foundOn": [
+        "/tv/live/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/market-entry/",
+      "foundOn": [
+        "/tv/shows/market-entry/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/market-entry/e1-choosing-a-base/",
+      "foundOn": [
+        "/tv/shows/market-entry/e1-choosing-a-base/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/market-entry/e2-banking/",
+      "foundOn": [
+        "/tv/shows/market-entry/e2-banking/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/office-hours/",
+      "foundOn": [
+        "/tv/shows/office-hours/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/office-hours/e1-first-customers/",
+      "foundOn": [
+        "/tv/shows/office-hours/e1-first-customers/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/office-hours/e2-pricing/",
+      "foundOn": [
+        "/tv/shows/office-hours/e2-pricing/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/office-hours/e3-retention/",
+      "foundOn": [
+        "/tv/shows/office-hours/e3-retention/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/radar-weekly/",
+      "foundOn": [
+        "/tv/shows/radar-weekly/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/radar-weekly/e1-pilot/",
+      "foundOn": [
+        "/tv/shows/radar-weekly/e1-pilot/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/the-raise/",
+      "foundOn": [
+        "/tv/shows/the-raise/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/the-raise/e1-building-the-list/",
+      "foundOn": [
+        "/tv/shows/the-raise/e1-building-the-list/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/the-raise/e2-first-meetings/",
+      "foundOn": [
+        "/tv/shows/the-raise/e2-first-meetings/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    },
+    {
+      "href": "https://startuproof.com/tv/shows/the-raise/e3-term-sheet/",
+      "foundOn": [
+        "/tv/shows/the-raise/e3-term-sheet/"
+      ],
+      "checked": false,
+      "note": "Outbound network blocked in test environment; not fetched."
+    }
+  ]
+}

@@ -5,7 +5,7 @@ const fold = (line: string) => {
   while (Buffer.byteLength(s, 'utf8') > 75) { let i = 74; while (Buffer.byteLength(s.slice(0, i), 'utf8') > 74) i--; out.push(s.slice(0, i)); s = ` ${s.slice(i)}`; }
   out.push(s); return out.join('\r\n');
 };
-const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
 const ymd = (iso: string) => iso.replace(/-/g, '');
 function addDay(iso: string) { const d = new Date(`${iso}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1); return d.toISOString().slice(0, 10); }
 const stamp = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');

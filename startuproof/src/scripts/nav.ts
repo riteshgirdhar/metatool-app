@@ -1,3 +1,4 @@
+export {};
 // Header menus and mobile drawer. Visibility is driven only by the `hidden` attribute,
 // and aria-expanded is always written in the same step, so they cannot drift apart.
 
